@@ -1,0 +1,119 @@
+# Clinical Reference Ranges Configuration
+# NOTE: General adult reference ranges, review before clinical use.
+
+disclaimer: "General adult reference ranges, review before clinical use."
+
+ranges:
+  Age:
+    unit: "years"
+    range: [18, 75]
+    abnormal_below: null
+    abnormal_above: null
+
+  BMI:
+    unit: "kg/m^2"
+    range: [18.5, 24.9]
+    abnormal_below: "low"
+    abnormal_above: "high"
+
+  BP:
+    unit: "mmHg"
+    range: [90, 120]
+    abnormal_below: "low"
+    abnormal_above: "high"
+
+  PR:
+    unit: "bpm"
+    range: [60, 100]
+    abnormal_below: "low"
+    abnormal_above: "high"
+
+  FBS:
+    unit: "mg/dL"
+    range: [70, 99]
+    abnormal_below: "low"
+    abnormal_above: "high"
+
+  CR:
+    unit: "mg/dL"
+    range: [0.6, 1.2]
+    abnormal_below: null
+    abnormal_above: "high"
+
+  TG:
+    unit: "mg/dL"
+    range: [0, 150]
+    abnormal_below: null
+    abnormal_above: "high"
+
+  LDL:
+    unit: "mg/dL"
+    range: [0, 100]
+    abnormal_below: null
+    abnormal_above: "high"
+
+  HDL:
+    unit: "mg/dL"
+    range: [40, 60]
+    abnormal_below: "low"
+    abnormal_above: null
+
+  BUN:
+    unit: "mg/dL"
+    range: [7, 20]
+    abnormal_below: "low"
+    abnormal_above: "high"
+
+  ESR:
+    unit: "mm/hr"
+    range: [0, 20]
+    abnormal_below: null
+    abnormal_above: "high"
+
+  HB:
+    unit: "g/dL"
+    range: [12.0, 17.5]
+    abnormal_below: "low"
+    abnormal_above: "high"
+
+  K:
+    unit: "mEq/L"
+    range: [3.5, 5.0]
+    abnormal_below: "low"
+    abnormal_above: "high"
+
+  Na:
+    unit: "mEq/L"
+    range: [135, 145]
+    abnormal_below: "low"
+    abnormal_above: "high"
+
+  WBC:
+    unit: "cells/mcL"
+    range: [4000, 11000]
+    abnormal_below: "low"
+    abnormal_above: "high"
+
+  Lymph:
+    unit: "%"
+    range: [20, 40]
+    abnormal_below: "low"
+    abnormal_above: "high"
+
+  Neut:
+    unit: "%"
+    range: [40, 70]
+    abnormal_below: "low"
+    abnormal_above: "high"
+
+  PLT:
+    unit: "x10^3/mcL"
+    range: [150, 450]
+    abnormal_below: "low"
+    abnormal_above: "high"
+
+  EF-TTE:
+    unit: "%"
+    range: [50, 70]
+    abnormal_below: "low"
+    abnormal_above: null

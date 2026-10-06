@@ -1,0 +1,48 @@
+# Target Definitions & Label Encoding Configuration
+
+targets:
+  cad:
+    column: "Cath"
+    positive_label: "CAD"
+    negative_label: "Normal"
+    description: "Overall significant Coronary Artery Disease (>=50% lumen stenosis in any major vessel)"
+    mapping:
+      "cad": 1
+      "normal": 0
+  LAD:
+    column: "LAD"
+    positive_label: "Stenotic"
+    negative_label: "Normal"
+    description: "Left Anterior Descending artery significant stenosis (>=50%)"
+    mapping:
+      "stenotic": 1
+      "normal": 0
+  LCX:
+    column: "LCX"
+    positive_label: "Stenotic"
+    negative_label: "Normal"
+    description: "Left Circumflex artery significant stenosis (>=50%)"
+    mapping:
+      "stenotic": 1
+      "normal": 0
+  RCA:
+    column: "RCA"
+    positive_label: "Stenotic"
+    negative_label: "Normal"
+    description: "Right Coronary Artery significant stenosis (>=50%)"
+    mapping:
+      "stenotic": 1
+      "normal": 0
+
+# HARD RULE: Columns that must NEVER appear in feature matrix X for any target
+excluded_columns:
+  - "Cath"
+  - "CAD"
+  - "cad"
+  - "LAD"
+  - "LCX"
+  - "RCA"
+
+selection_metric: "roc_auc"
+threshold_strategy: "f1_max"
+random_seed: 42

@@ -1,0 +1,47 @@
+# Column Map: Normalization & Known Header Variants
+# Maps raw header names from incoming datasets to canonical feature names
+
+synonyms:
+  "st elevation": "ST Elevation"
+  "st depression": "ST Depression"
+  "tinversion": "Tinversion"
+  "t inversion": "Tinversion"
+  "region rwma": "Region RWMA"
+  "ef-tte": "EF-TTE"
+  "ef tte": "EF-TTE"
+  "lvh": "LVH"
+  "poor r progression": "Poor R Progression"
+  "bbb": "BBB"
+  "current smoker": "Current Smoker"
+  "ex-smoker": "EX-Smoker"
+  "airway disease": "Airway disease"
+  "thyroid disease": "Thyroid Disease"
+  "weak peripheral pulse": "Weak Peripheral Pulse"
+  "lung rales": "Lung rales"
+  "systolic murmur": "Systolic Murmur"
+  "diastolic murmur": "Diastolic Murmur"
+  "typical chest pain": "Typical Chest Pain"
+  "exertional cp": "Exertional CP"
+  "lowth ang": "LowTH Ang"
+  "function class": "Function Class"
+
+value_mappings:
+  binary_yes_no:
+    "y": 1
+    "yes": 1
+    "n": 0
+    "no": 0
+    "true": 1
+    "false": 0
+    "t": 1
+    "f": 0
+    1: 1
+    0: 0
+  sex:
+    "male": 1
+    "m": 1
+    "female": 0
+    "fmale": 0
+    "f": 0
+    1: 1
+    0: 0

@@ -1,0 +1,24 @@
+{
+  "timestamp": "2026-10-04T16:54:35.334621",
+  "random_seed": 42,
+  "n_samples": 303,
+  "n_features": 55,
+  "excluded_leakage_columns": [
+    "Cath",
+    "CAD",
+    "cad",
+    "LAD",
+    "LCX",
+    "RCA"
+  ],
+  "outer_cv": "RepeatedStratifiedKFold(5 folds, 3 repeats)",
+  "inner_cv": "StratifiedKFold(3 folds)",
+  "calibration": "CalibratedClassifierCV(method='sigmoid', cv=5)",
+  "selected_models": {
+    "cad": "random_forest",
+    "LAD": "random_forest",
+    "LCX": "random_forest",
+    "RCA": "logistic_regression"
+  },
+  "total_elapsed_seconds": 80.3
+}

@@ -1,0 +1,5 @@
+target,mean_spearman_top15,std_spearman,top_features
+cad,0.578,0.164,"Typical Chest Pain, Age, Region RWMA, ESR, TG"
+LAD,0.579,0.197,"Typical Chest Pain, Age, EF-TTE, Region RWMA, ESR"
+LCX,0.43,0.189,"Age, Typical Chest Pain, Length, CR, Na"
+RCA,0.434,0.228,"Age, Neut, Typical Chest Pain, DM, ESR"

@@ -1,0 +1,2190 @@
+{
+  "version": "2.0.0",
+  "name": "CardioMap Feature Schema",
+  "disclaimer": "General adult reference ranges, review before clinical use.",
+  "groups": [
+    {
+      "id": "Demographic",
+      "title": "Demographic",
+      "description": "Baseline patient demographics and long-term systemic comorbidities",
+      "fields": [
+        {
+          "key": "Age",
+          "label": "Age",
+          "group": "Demographic",
+          "type": "numeric",
+          "unit": "years",
+          "description": "Age",
+          "reference_range": [
+            18,
+            75
+          ],
+          "abnormal_below": null,
+          "abnormal_above": null,
+          "min": 30.0,
+          "max": 86.0,
+          "default": 58.0
+        },
+        {
+          "key": "Weight",
+          "label": "Weight",
+          "group": "Demographic",
+          "type": "numeric",
+          "unit": "kg",
+          "description": "Weight",
+          "min": 48.0,
+          "max": 120.0,
+          "default": 74.0
+        },
+        {
+          "key": "Length",
+          "label": "Length",
+          "group": "Demographic",
+          "type": "numeric",
+          "unit": "cm",
+          "description": "Length",
+          "min": 140.0,
+          "max": 188.0,
+          "default": 165.0
+        },
+        {
+          "key": "Sex",
+          "label": "Sex",
+          "group": "Demographic",
+          "type": "binary",
+          "unit": "binary (1=Male, 0=Female)",
+          "description": "Sex",
+          "min": 0,
+          "max": 1,
+          "default": 1,
+          "options": [
+            {
+              "label": "No / Absent",
+              "value": 0
+            },
+            {
+              "label": "Yes / Present",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "key": "BMI",
+          "label": "BMI",
+          "group": "Demographic",
+          "type": "numeric",
+          "unit": "kg/m^2",
+          "description": "BMI",
+          "reference_range": [
+            18.5,
+            24.9
+          ],
+          "abnormal_below": "low",
+          "abnormal_above": "high",
+          "min": 18.1,
+          "max": 40.9,
+          "default": 26.8
+        },
+        {
+          "key": "DM",
+          "label": "DM",
+          "group": "Demographic",
+          "type": "binary",
+          "unit": null,
+          "description": "Diabetes Mellitus",
+          "min": 0,
+          "max": 1,
+          "default": 0,
+          "options": [
+            {
+              "label": "No / Absent",
+              "value": 0
+            },
+            {
+              "label": "Yes / Present",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "key": "HTN",
+          "label": "HTN",
+          "group": "Demographic",
+          "type": "binary",
+          "unit": null,
+          "description": "Hypertension",
+          "min": 0,
+          "max": 1,
+          "default": 1,
+          "options": [
+            {
+              "label": "No / Absent",
+              "value": 0
+            },
+            {
+              "label": "Yes / Present",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "key": "Current Smoker",
+          "label": "Current Smoker",
+          "group": "Demographic",
+          "type": "binary",
+          "unit": null,
+          "description": "Current Smoker",
+          "min": 0,
+          "max": 1,
+          "default": 0,
+          "options": [
+            {
+              "label": "No / Absent",
+              "value": 0
+            },
+            {
+              "label": "Yes / Present",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "key": "EX-Smoker",
+          "label": "EX-Smoker",
+          "group": "Demographic",
+          "type": "binary",
+          "unit": null,
+          "description": "EX-Smoker",
+          "min": 0,
+          "max": 1,
+          "default": 0,
+          "options": [
+            {
+              "label": "No / Absent",
+              "value": 0
+            },
+            {
+              "label": "Yes / Present",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "key": "FH",
+          "label": "FH",
+          "group": "Demographic",
+          "type": "binary",
+          "unit": null,
+          "description": "Family History of CAD",
+          "min": 0,
+          "max": 1,
+          "default": 0,
+          "options": [
+            {
+              "label": "No / Absent",
+              "value": 0
+            },
+            {
+              "label": "Yes / Present",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "key": "Obesity",
+          "label": "Obesity",
+          "group": "Demographic",
+          "type": "binary",
+          "unit": null,
+          "description": "Obesity",
+          "min": 0,
+          "max": 1,
+          "default": 1,
+          "options": [
+            {
+              "label": "No / Absent",
+              "value": 0
+            },
+            {
+              "label": "Yes / Present",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "key": "CRF",
+          "label": "CRF",
+          "group": "Demographic",
+          "type": "binary",
+          "unit": null,
+          "description": "Chronic Renal Failure",
+          "min": 0,
+          "max": 1,
+          "default": 0,
+          "options": [
+            {
+              "label": "No / Absent",
+              "value": 0
+            },
+            {
+              "label": "Yes / Present",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "key": "CVA",
+          "label": "CVA",
+          "group": "Demographic",
+          "type": "binary",
+          "unit": null,
+          "description": "Cerebrovascular Accident / Stroke",
+          "min": 0,
+          "max": 1,
+          "default": 0,
+          "options": [
+            {
+              "label": "No / Absent",
+              "value": 0
+            },
+            {
+              "label": "Yes / Present",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "key": "Airway disease",
+          "label": "Airway disease",
+          "group": "Demographic",
+          "type": "binary",
+          "unit": null,
+          "description": "Airway disease",
+          "min": 0,
+          "max": 1,
+          "default": 0,
+          "options": [
+            {
+              "label": "No / Absent",
+              "value": 0
+            },
+            {
+              "label": "Yes / Present",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "key": "Thyroid Disease",
+          "label": "Thyroid Disease",
+          "group": "Demographic",
+          "type": "binary",
+          "unit": null,
+          "description": "Thyroid Disease",
+          "min": 0,
+          "max": 1,
+          "default": 0,
+          "options": [
+            {
+              "label": "No / Absent",
+              "value": 0
+            },
+            {
+              "label": "Yes / Present",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "key": "CHF",
+          "label": "CHF",
+          "group": "Demographic",
+          "type": "binary",
+          "unit": null,
+          "description": "Congestive Heart Failure",
+          "min": 0,
+          "max": 1,
+          "default": 0,
+          "options": [
+            {
+              "label": "No / Absent",
+              "value": 0
+            },
+            {
+              "label": "Yes / Present",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "key": "DLP",
+          "label": "DLP",
+          "group": "Demographic",
+          "type": "binary",
+          "unit": null,
+          "description": "Dyslipidemia",
+          "min": 0,
+          "max": 1,
+          "default": 0,
+          "options": [
+            {
+              "label": "No / Absent",
+              "value": 0
+            },
+            {
+              "label": "Yes / Present",
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Clinical examination",
+      "title": "Clinical examination",
+      "description": "Hemodynamics, physical exam signs, and symptomatic chest pain presentation",
+      "fields": [
+        {
+          "key": "BP",
+          "label": "BP",
+          "group": "Clinical examination",
+          "type": "numeric",
+          "unit": "mmHg",
+          "description": "BP",
+          "reference_range": [
+            90,
+            120
+          ],
+          "abnormal_below": "low",
+          "abnormal_above": "high",
+          "min": 90.0,
+          "max": 190.0,
+          "default": 130.0
+        },
+        {
+          "key": "PR",
+          "label": "PR",
+          "group": "Clinical examination",
+          "type": "numeric",
+          "unit": "bpm",
+          "description": "PR",
+          "reference_range": [
+            60,
+            100
+          ],
+          "abnormal_below": "low",
+          "abnormal_above": "high",
+          "min": 50.0,
+          "max": 110.0,
+          "default": 70.0
+        },
+        {
+          "key": "Edema",
+          "label": "Edema",
+          "group": "Clinical examination",
+          "type": "binary",
+          "unit": null,
+          "description": "Edema",
+          "min": 0,
+          "max": 1,
+          "default": 0,
+          "options": [
+            {
+              "label": "No / Absent",
+              "value": 0
+            },
+            {
+              "label": "Yes / Present",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "key": "Weak Peripheral Pulse",
+          "label": "Weak Peripheral Pulse",
+          "group": "Clinical examination",
+          "type": "binary",
+          "unit": null,
+          "description": "Weak Peripheral Pulse",
+          "min": 0,
+          "max": 1,
+          "default": 0,
+          "options": [
+            {
+              "label": "No / Absent",
+              "value": 0
+            },
+            {
+              "label": "Yes / Present",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "key": "Lung rales",
+          "label": "Lung rales",
+          "group": "Clinical examination",
+          "type": "binary",
+          "unit": null,
+          "description": "Lung rales",
+          "min": 0,
+          "max": 1,
+          "default": 0,
+          "options": [
+            {
+              "label": "No / Absent",
+              "value": 0
+            },
+            {
+              "label": "Yes / Present",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "key": "Systolic Murmur",
+          "label": "Systolic Murmur",
+          "group": "Clinical examination",
+          "type": "binary",
+          "unit": null,
+          "description": "Systolic Murmur",
+          "min": 0,
+          "max": 1,
+          "default": 0,
+          "options": [
+            {
+              "label": "No / Absent",
+              "value": 0
+            },
+            {
+              "label": "Yes / Present",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "key": "Diastolic Murmur",
+          "label": "Diastolic Murmur",
+          "group": "Clinical examination",
+          "type": "binary",
+          "unit": null,
+          "description": "Diastolic Murmur",
+          "min": 0,
+          "max": 1,
+          "default": 0,
+          "options": [
+            {
+              "label": "No / Absent",
+              "value": 0
+            },
+            {
+              "label": "Yes / Present",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "key": "Typical Chest Pain",
+          "label": "Typical Chest Pain",
+          "group": "Clinical examination",
+          "type": "binary",
+          "unit": null,
+          "description": "Typical Chest Pain",
+          "min": 0,
+          "max": 1,
+          "default": 1,
+          "options": [
+            {
+              "label": "No / Absent",
+              "value": 0
+            },
+            {
+              "label": "Yes / Present",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "key": "Dyspnea",
+          "label": "Dyspnea",
+          "group": "Clinical examination",
+          "type": "binary",
+          "unit": null,
+          "description": "Dyspnea",
+          "min": 0,
+          "max": 1,
+          "default": 0,
+          "options": [
+            {
+              "label": "No / Absent",
+              "value": 0
+            },
+            {
+              "label": "Yes / Present",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "key": "Function Class",
+          "label": "Function Class",
+          "group": "Clinical examination",
+          "type": "ordinal",
+          "unit": null,
+          "description": "NYHA Functional Class (1 to 4)",
+          "categories": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "default": 0,
+          "min": 1,
+          "max": 4
+        },
+        {
+          "key": "Atypical",
+          "label": "Atypical",
+          "group": "Clinical examination",
+          "type": "binary",
+          "unit": null,
+          "description": "Atypical Chest Pain",
+          "min": 0,
+          "max": 1,
+          "default": 0,
+          "options": [
+            {
+              "label": "No / Absent",
+              "value": 0
+            },
+            {
+              "label": "Yes / Present",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "key": "Nonanginal",
+          "label": "Nonanginal",
+          "group": "Clinical examination",
+          "type": "binary",
+          "unit": null,
+          "description": "Non-anginal Chest Pain",
+          "min": 0,
+          "max": 1,
+          "default": 0,
+          "options": [
+            {
+              "label": "No / Absent",
+              "value": 0
+            },
+            {
+              "label": "Yes / Present",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "key": "Exertional CP",
+          "label": "Exertional CP",
+          "group": "Clinical examination",
+          "type": "binary",
+          "unit": null,
+          "description": "Exertional CP",
+          "min": 0,
+          "max": 1,
+          "default": 0,
+          "options": [
+            {
+              "label": "No / Absent",
+              "value": 0
+            },
+            {
+              "label": "Yes / Present",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "key": "LowTH Ang",
+          "label": "LowTH Ang",
+          "group": "Clinical examination",
+          "type": "binary",
+          "unit": null,
+          "description": "Low Threshold Angina",
+          "min": 0,
+          "max": 1,
+          "default": 0,
+          "options": [
+            {
+              "label": "No / Absent",
+              "value": 0
+            },
+            {
+              "label": "Yes / Present",
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ECG",
+      "title": "ECG",
+      "description": "12-lead electrophysiology and ischemic repolarization markers",
+      "fields": [
+        {
+          "key": "Q Wave",
+          "label": "Q Wave",
+          "group": "ECG",
+          "type": "binary",
+          "unit": null,
+          "description": "Q Wave",
+          "min": 0,
+          "max": 1,
+          "default": 0,
+          "options": [
+            {
+              "label": "No / Absent",
+              "value": 0
+            },
+            {
+              "label": "Yes / Present",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "key": "ST Elevation",
+          "label": "ST Elevation",
+          "group": "ECG",
+          "type": "binary",
+          "unit": null,
+          "description": "ST Elevation",
+          "min": 0,
+          "max": 1,
+          "default": 0,
+          "options": [
+            {
+              "label": "No / Absent",
+              "value": 0
+            },
+            {
+              "label": "Yes / Present",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "key": "ST Depression",
+          "label": "ST Depression",
+          "group": "ECG",
+          "type": "binary",
+          "unit": null,
+          "description": "ST Depression",
+          "min": 0,
+          "max": 1,
+          "default": 0,
+          "options": [
+            {
+              "label": "No / Absent",
+              "value": 0
+            },
+            {
+              "label": "Yes / Present",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "key": "Tinversion",
+          "label": "Tinversion",
+          "group": "ECG",
+          "type": "binary",
+          "unit": null,
+          "description": "Tinversion",
+          "min": 0,
+          "max": 1,
+          "default": 0,
+          "options": [
+            {
+              "label": "No / Absent",
+              "value": 0
+            },
+            {
+              "label": "Yes / Present",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "key": "LVH",
+          "label": "LVH",
+          "group": "ECG",
+          "type": "binary",
+          "unit": null,
+          "description": "Left Ventricular Hypertrophy",
+          "min": 0,
+          "max": 1,
+          "default": 0,
+          "options": [
+            {
+              "label": "No / Absent",
+              "value": 0
+            },
+            {
+              "label": "Yes / Present",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "key": "Poor R Progression",
+          "label": "Poor R Progression",
+          "group": "ECG",
+          "type": "binary",
+          "unit": null,
+          "description": "Poor R Progression",
+          "min": 0,
+          "max": 1,
+          "default": 0,
+          "options": [
+            {
+              "label": "No / Absent",
+              "value": 0
+            },
+            {
+              "label": "Yes / Present",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "key": "BBB",
+          "label": "BBB",
+          "group": "ECG",
+          "type": "nominal",
+          "unit": null,
+          "description": "Bundle Branch Block (N, LBBB, RBBB)",
+          "options": [
+            {
+              "label": "LBBB",
+              "value": "LBBB"
+            },
+            {
+              "label": "N",
+              "value": "N"
+            },
+            {
+              "label": "RBBB",
+              "value": "RBBB"
+            }
+          ],
+          "default": "N"
+        }
+      ]
+    },
+    {
+      "id": "Laboratory",
+      "title": "Laboratory",
+      "description": "Standard lipid fractions, glycemic markers, renal panel, and hematology",
+      "fields": [
+        {
+          "key": "FBS",
+          "label": "FBS",
+          "group": "Laboratory",
+          "type": "numeric",
+          "unit": "mg/dL",
+          "description": "FBS",
+          "reference_range": [
+            70,
+            99
+          ],
+          "abnormal_below": "low",
+          "abnormal_above": "high",
+          "min": 62.0,
+          "max": 400.0,
+          "default": 98.0
+        },
+        {
+          "key": "CR",
+          "label": "CR",
+          "group": "Laboratory",
+          "type": "numeric",
+          "unit": "mg/dL",
+          "description": "CR",
+          "reference_range": [
+            0.6,
+            1.2
+          ],
+          "abnormal_below": null,
+          "abnormal_above": "high",
+          "min": 0.5,
+          "max": 2.2,
+          "default": 1.0
+        },
+        {
+          "key": "TG",
+          "label": "TG",
+          "group": "Laboratory",
+          "type": "numeric",
+          "unit": "mg/dL",
+          "description": "TG",
+          "reference_range": [
+            0,
+            150
+          ],
+          "abnormal_below": null,
+          "abnormal_above": "high",
+          "min": 37.0,
+          "max": 1050.0,
+          "default": 122.0
+        },
+        {
+          "key": "LDL",
+          "label": "LDL",
+          "group": "Laboratory",
+          "type": "numeric",
+          "unit": "mg/dL",
+          "description": "LDL",
+          "reference_range": [
+            0,
+            100
+          ],
+          "abnormal_below": null,
+          "abnormal_above": "high",
+          "min": 18.0,
+          "max": 232.0,
+          "default": 100.0
+        },
+        {
+          "key": "HDL",
+          "label": "HDL",
+          "group": "Laboratory",
+          "type": "numeric",
+          "unit": "mg/dL",
+          "description": "HDL",
+          "reference_range": [
+            40,
+            60
+          ],
+          "abnormal_below": "low",
+          "abnormal_above": null,
+          "min": 15.9,
+          "max": 111.0,
+          "default": 39.0
+        },
+        {
+          "key": "BUN",
+          "label": "BUN",
+          "group": "Laboratory",
+          "type": "numeric",
+          "unit": "mg/dL",
+          "description": "BUN",
+          "reference_range": [
+            7,
+            20
+          ],
+          "abnormal_below": "low",
+          "abnormal_above": "high",
+          "min": 6.0,
+          "max": 52.0,
+          "default": 16.0
+        },
+        {
+          "key": "ESR",
+          "label": "ESR",
+          "group": "Laboratory",
+          "type": "numeric",
+          "unit": "mm/hr",
+          "description": "ESR",
+          "reference_range": [
+            0,
+            20
+          ],
+          "abnormal_below": null,
+          "abnormal_above": "high",
+          "min": 1.0,
+          "max": 90.0,
+          "default": 15.0
+        },
+        {
+          "key": "HB",
+          "label": "HB",
+          "group": "Laboratory",
+          "type": "numeric",
+          "unit": "g/dL",
+          "description": "HB",
+          "reference_range": [
+            12.0,
+            17.5
+          ],
+          "abnormal_below": "low",
+          "abnormal_above": "high",
+          "min": 8.9,
+          "max": 17.6,
+          "default": 13.2
+        },
+        {
+          "key": "K",
+          "label": "K",
+          "group": "Laboratory",
+          "type": "numeric",
+          "unit": "mEq/L",
+          "description": "K",
+          "reference_range": [
+            3.5,
+            5.0
+          ],
+          "abnormal_below": "low",
+          "abnormal_above": "high",
+          "min": 3.0,
+          "max": 6.6,
+          "default": 4.2
+        },
+        {
+          "key": "Na",
+          "label": "Na",
+          "group": "Laboratory",
+          "type": "numeric",
+          "unit": "mEq/L",
+          "description": "Na",
+          "reference_range": [
+            135,
+            145
+          ],
+          "abnormal_below": "low",
+          "abnormal_above": "high",
+          "min": 128.0,
+          "max": 156.0,
+          "default": 141.0
+        },
+        {
+          "key": "WBC",
+          "label": "WBC",
+          "group": "Laboratory",
+          "type": "numeric",
+          "unit": "cells/mcL",
+          "description": "WBC",
+          "reference_range": [
+            4000,
+            11000
+          ],
+          "abnormal_below": "low",
+          "abnormal_above": "high",
+          "min": 3700.0,
+          "max": 18000.0,
+          "default": 7100.0
+        },
+        {
+          "key": "Lymph",
+          "label": "Lymph",
+          "group": "Laboratory",
+          "type": "numeric",
+          "unit": "%",
+          "description": "Lymph",
+          "reference_range": [
+            20,
+            40
+          ],
+          "abnormal_below": "low",
+          "abnormal_above": "high",
+          "min": 7.0,
+          "max": 60.0,
+          "default": 32.0
+        },
+        {
+          "key": "Neut",
+          "label": "Neut",
+          "group": "Laboratory",
+          "type": "numeric",
+          "unit": "%",
+          "description": "Neut",
+          "reference_range": [
+            40,
+            70
+          ],
+          "abnormal_below": "low",
+          "abnormal_above": "high",
+          "min": 32.0,
+          "max": 89.0,
+          "default": 60.0
+        },
+        {
+          "key": "PLT",
+          "label": "PLT",
+          "group": "Laboratory",
+          "type": "numeric",
+          "unit": "x10^3/mcL",
+          "description": "PLT",
+          "reference_range": [
+            150,
+            450
+          ],
+          "abnormal_below": "low",
+          "abnormal_above": "high",
+          "min": 25.0,
+          "max": 742.0,
+          "default": 210.0
+        }
+      ]
+    },
+    {
+      "id": "Echocardiography",
+      "title": "Echocardiography",
+      "description": "Structural myocardial performance and regional kinetic wall motion",
+      "fields": [
+        {
+          "key": "EF-TTE",
+          "label": "EF-TTE",
+          "group": "Echocardiography",
+          "type": "numeric",
+          "unit": "%",
+          "description": "EF-TTE",
+          "reference_range": [
+            50,
+            70
+          ],
+          "abnormal_below": "low",
+          "abnormal_above": null,
+          "min": 15.0,
+          "max": 60.0,
+          "default": 50.0
+        },
+        {
+          "key": "Region RWMA",
+          "label": "Region RWMA",
+          "group": "Echocardiography",
+          "type": "nominal",
+          "unit": null,
+          "description": "Regional Wall Motion Abnormality score / territory (0=None, 1..4=Specific segments)",
+          "options": [
+            {
+              "label": "0",
+              "value": "0"
+            },
+            {
+              "label": "1",
+              "value": "1"
+            },
+            {
+              "label": "2",
+              "value": "2"
+            },
+            {
+              "label": "3",
+              "value": "3"
+            },
+            {
+              "label": "4",
+              "value": "4"
+            }
+          ],
+          "default": "0"
+        },
+        {
+          "key": "VHD",
+          "label": "VHD",
+          "group": "Echocardiography",
+          "type": "nominal",
+          "unit": null,
+          "description": "Valvular Heart Disease severity (N, mild, moderate, severe)",
+          "options": [
+            {
+              "label": "Moderate",
+              "value": "Moderate"
+            },
+            {
+              "label": "N",
+              "value": "N"
+            },
+            {
+              "label": "Severe",
+              "value": "Severe"
+            },
+            {
+              "label": "mild",
+              "value": "mild"
+            }
+          ],
+          "default": "mild"
+        }
+      ]
+    }
+  ],
+  "features": {
+    "Age": {
+      "key": "Age",
+      "label": "Age",
+      "group": "Demographic",
+      "type": "numeric",
+      "unit": "years",
+      "description": "Age",
+      "reference_range": [
+        18,
+        75
+      ],
+      "abnormal_below": null,
+      "abnormal_above": null,
+      "min": 30.0,
+      "max": 86.0,
+      "default": 58.0
+    },
+    "Weight": {
+      "key": "Weight",
+      "label": "Weight",
+      "group": "Demographic",
+      "type": "numeric",
+      "unit": "kg",
+      "description": "Weight",
+      "min": 48.0,
+      "max": 120.0,
+      "default": 74.0
+    },
+    "Length": {
+      "key": "Length",
+      "label": "Length",
+      "group": "Demographic",
+      "type": "numeric",
+      "unit": "cm",
+      "description": "Length",
+      "min": 140.0,
+      "max": 188.0,
+      "default": 165.0
+    },
+    "Sex": {
+      "key": "Sex",
+      "label": "Sex",
+      "group": "Demographic",
+      "type": "binary",
+      "unit": "binary (1=Male, 0=Female)",
+      "description": "Sex",
+      "min": 0,
+      "max": 1,
+      "default": 1,
+      "options": [
+        {
+          "label": "No / Absent",
+          "value": 0
+        },
+        {
+          "label": "Yes / Present",
+          "value": 1
+        }
+      ]
+    },
+    "BMI": {
+      "key": "BMI",
+      "label": "BMI",
+      "group": "Demographic",
+      "type": "numeric",
+      "unit": "kg/m^2",
+      "description": "BMI",
+      "reference_range": [
+        18.5,
+        24.9
+      ],
+      "abnormal_below": "low",
+      "abnormal_above": "high",
+      "min": 18.1,
+      "max": 40.9,
+      "default": 26.8
+    },
+    "DM": {
+      "key": "DM",
+      "label": "DM",
+      "group": "Demographic",
+      "type": "binary",
+      "unit": null,
+      "description": "Diabetes Mellitus",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        {
+          "label": "No / Absent",
+          "value": 0
+        },
+        {
+          "label": "Yes / Present",
+          "value": 1
+        }
+      ]
+    },
+    "HTN": {
+      "key": "HTN",
+      "label": "HTN",
+      "group": "Demographic",
+      "type": "binary",
+      "unit": null,
+      "description": "Hypertension",
+      "min": 0,
+      "max": 1,
+      "default": 1,
+      "options": [
+        {
+          "label": "No / Absent",
+          "value": 0
+        },
+        {
+          "label": "Yes / Present",
+          "value": 1
+        }
+      ]
+    },
+    "Current Smoker": {
+      "key": "Current Smoker",
+      "label": "Current Smoker",
+      "group": "Demographic",
+      "type": "binary",
+      "unit": null,
+      "description": "Current Smoker",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        {
+          "label": "No / Absent",
+          "value": 0
+        },
+        {
+          "label": "Yes / Present",
+          "value": 1
+        }
+      ]
+    },
+    "EX-Smoker": {
+      "key": "EX-Smoker",
+      "label": "EX-Smoker",
+      "group": "Demographic",
+      "type": "binary",
+      "unit": null,
+      "description": "EX-Smoker",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        {
+          "label": "No / Absent",
+          "value": 0
+        },
+        {
+          "label": "Yes / Present",
+          "value": 1
+        }
+      ]
+    },
+    "FH": {
+      "key": "FH",
+      "label": "FH",
+      "group": "Demographic",
+      "type": "binary",
+      "unit": null,
+      "description": "Family History of CAD",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        {
+          "label": "No / Absent",
+          "value": 0
+        },
+        {
+          "label": "Yes / Present",
+          "value": 1
+        }
+      ]
+    },
+    "Obesity": {
+      "key": "Obesity",
+      "label": "Obesity",
+      "group": "Demographic",
+      "type": "binary",
+      "unit": null,
+      "description": "Obesity",
+      "min": 0,
+      "max": 1,
+      "default": 1,
+      "options": [
+        {
+          "label": "No / Absent",
+          "value": 0
+        },
+        {
+          "label": "Yes / Present",
+          "value": 1
+        }
+      ]
+    },
+    "CRF": {
+      "key": "CRF",
+      "label": "CRF",
+      "group": "Demographic",
+      "type": "binary",
+      "unit": null,
+      "description": "Chronic Renal Failure",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        {
+          "label": "No / Absent",
+          "value": 0
+        },
+        {
+          "label": "Yes / Present",
+          "value": 1
+        }
+      ]
+    },
+    "CVA": {
+      "key": "CVA",
+      "label": "CVA",
+      "group": "Demographic",
+      "type": "binary",
+      "unit": null,
+      "description": "Cerebrovascular Accident / Stroke",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        {
+          "label": "No / Absent",
+          "value": 0
+        },
+        {
+          "label": "Yes / Present",
+          "value": 1
+        }
+      ]
+    },
+    "Airway disease": {
+      "key": "Airway disease",
+      "label": "Airway disease",
+      "group": "Demographic",
+      "type": "binary",
+      "unit": null,
+      "description": "Airway disease",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        {
+          "label": "No / Absent",
+          "value": 0
+        },
+        {
+          "label": "Yes / Present",
+          "value": 1
+        }
+      ]
+    },
+    "Thyroid Disease": {
+      "key": "Thyroid Disease",
+      "label": "Thyroid Disease",
+      "group": "Demographic",
+      "type": "binary",
+      "unit": null,
+      "description": "Thyroid Disease",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        {
+          "label": "No / Absent",
+          "value": 0
+        },
+        {
+          "label": "Yes / Present",
+          "value": 1
+        }
+      ]
+    },
+    "CHF": {
+      "key": "CHF",
+      "label": "CHF",
+      "group": "Demographic",
+      "type": "binary",
+      "unit": null,
+      "description": "Congestive Heart Failure",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        {
+          "label": "No / Absent",
+          "value": 0
+        },
+        {
+          "label": "Yes / Present",
+          "value": 1
+        }
+      ]
+    },
+    "DLP": {
+      "key": "DLP",
+      "label": "DLP",
+      "group": "Demographic",
+      "type": "binary",
+      "unit": null,
+      "description": "Dyslipidemia",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        {
+          "label": "No / Absent",
+          "value": 0
+        },
+        {
+          "label": "Yes / Present",
+          "value": 1
+        }
+      ]
+    },
+    "BP": {
+      "key": "BP",
+      "label": "BP",
+      "group": "Clinical examination",
+      "type": "numeric",
+      "unit": "mmHg",
+      "description": "BP",
+      "reference_range": [
+        90,
+        120
+      ],
+      "abnormal_below": "low",
+      "abnormal_above": "high",
+      "min": 90.0,
+      "max": 190.0,
+      "default": 130.0
+    },
+    "PR": {
+      "key": "PR",
+      "label": "PR",
+      "group": "Clinical examination",
+      "type": "numeric",
+      "unit": "bpm",
+      "description": "PR",
+      "reference_range": [
+        60,
+        100
+      ],
+      "abnormal_below": "low",
+      "abnormal_above": "high",
+      "min": 50.0,
+      "max": 110.0,
+      "default": 70.0
+    },
+    "Edema": {
+      "key": "Edema",
+      "label": "Edema",
+      "group": "Clinical examination",
+      "type": "binary",
+      "unit": null,
+      "description": "Edema",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        {
+          "label": "No / Absent",
+          "value": 0
+        },
+        {
+          "label": "Yes / Present",
+          "value": 1
+        }
+      ]
+    },
+    "Weak Peripheral Pulse": {
+      "key": "Weak Peripheral Pulse",
+      "label": "Weak Peripheral Pulse",
+      "group": "Clinical examination",
+      "type": "binary",
+      "unit": null,
+      "description": "Weak Peripheral Pulse",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        {
+          "label": "No / Absent",
+          "value": 0
+        },
+        {
+          "label": "Yes / Present",
+          "value": 1
+        }
+      ]
+    },
+    "Lung rales": {
+      "key": "Lung rales",
+      "label": "Lung rales",
+      "group": "Clinical examination",
+      "type": "binary",
+      "unit": null,
+      "description": "Lung rales",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        {
+          "label": "No / Absent",
+          "value": 0
+        },
+        {
+          "label": "Yes / Present",
+          "value": 1
+        }
+      ]
+    },
+    "Systolic Murmur": {
+      "key": "Systolic Murmur",
+      "label": "Systolic Murmur",
+      "group": "Clinical examination",
+      "type": "binary",
+      "unit": null,
+      "description": "Systolic Murmur",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        {
+          "label": "No / Absent",
+          "value": 0
+        },
+        {
+          "label": "Yes / Present",
+          "value": 1
+        }
+      ]
+    },
+    "Diastolic Murmur": {
+      "key": "Diastolic Murmur",
+      "label": "Diastolic Murmur",
+      "group": "Clinical examination",
+      "type": "binary",
+      "unit": null,
+      "description": "Diastolic Murmur",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        {
+          "label": "No / Absent",
+          "value": 0
+        },
+        {
+          "label": "Yes / Present",
+          "value": 1
+        }
+      ]
+    },
+    "Typical Chest Pain": {
+      "key": "Typical Chest Pain",
+      "label": "Typical Chest Pain",
+      "group": "Clinical examination",
+      "type": "binary",
+      "unit": null,
+      "description": "Typical Chest Pain",
+      "min": 0,
+      "max": 1,
+      "default": 1,
+      "options": [
+        {
+          "label": "No / Absent",
+          "value": 0
+        },
+        {
+          "label": "Yes / Present",
+          "value": 1
+        }
+      ]
+    },
+    "Dyspnea": {
+      "key": "Dyspnea",
+      "label": "Dyspnea",
+      "group": "Clinical examination",
+      "type": "binary",
+      "unit": null,
+      "description": "Dyspnea",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        {
+          "label": "No / Absent",
+          "value": 0
+        },
+        {
+          "label": "Yes / Present",
+          "value": 1
+        }
+      ]
+    },
+    "Function Class": {
+      "key": "Function Class",
+      "label": "Function Class",
+      "group": "Clinical examination",
+      "type": "ordinal",
+      "unit": null,
+      "description": "NYHA Functional Class (1 to 4)",
+      "categories": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "default": 0,
+      "min": 1,
+      "max": 4
+    },
+    "Atypical": {
+      "key": "Atypical",
+      "label": "Atypical",
+      "group": "Clinical examination",
+      "type": "binary",
+      "unit": null,
+      "description": "Atypical Chest Pain",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        {
+          "label": "No / Absent",
+          "value": 0
+        },
+        {
+          "label": "Yes / Present",
+          "value": 1
+        }
+      ]
+    },
+    "Nonanginal": {
+      "key": "Nonanginal",
+      "label": "Nonanginal",
+      "group": "Clinical examination",
+      "type": "binary",
+      "unit": null,
+      "description": "Non-anginal Chest Pain",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        {
+          "label": "No / Absent",
+          "value": 0
+        },
+        {
+          "label": "Yes / Present",
+          "value": 1
+        }
+      ]
+    },
+    "Exertional CP": {
+      "key": "Exertional CP",
+      "label": "Exertional CP",
+      "group": "Clinical examination",
+      "type": "binary",
+      "unit": null,
+      "description": "Exertional CP",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        {
+          "label": "No / Absent",
+          "value": 0
+        },
+        {
+          "label": "Yes / Present",
+          "value": 1
+        }
+      ]
+    },
+    "LowTH Ang": {
+      "key": "LowTH Ang",
+      "label": "LowTH Ang",
+      "group": "Clinical examination",
+      "type": "binary",
+      "unit": null,
+      "description": "Low Threshold Angina",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        {
+          "label": "No / Absent",
+          "value": 0
+        },
+        {
+          "label": "Yes / Present",
+          "value": 1
+        }
+      ]
+    },
+    "Q Wave": {
+      "key": "Q Wave",
+      "label": "Q Wave",
+      "group": "ECG",
+      "type": "binary",
+      "unit": null,
+      "description": "Q Wave",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        {
+          "label": "No / Absent",
+          "value": 0
+        },
+        {
+          "label": "Yes / Present",
+          "value": 1
+        }
+      ]
+    },
+    "ST Elevation": {
+      "key": "ST Elevation",
+      "label": "ST Elevation",
+      "group": "ECG",
+      "type": "binary",
+      "unit": null,
+      "description": "ST Elevation",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        {
+          "label": "No / Absent",
+          "value": 0
+        },
+        {
+          "label": "Yes / Present",
+          "value": 1
+        }
+      ]
+    },
+    "ST Depression": {
+      "key": "ST Depression",
+      "label": "ST Depression",
+      "group": "ECG",
+      "type": "binary",
+      "unit": null,
+      "description": "ST Depression",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        {
+          "label": "No / Absent",
+          "value": 0
+        },
+        {
+          "label": "Yes / Present",
+          "value": 1
+        }
+      ]
+    },
+    "Tinversion": {
+      "key": "Tinversion",
+      "label": "Tinversion",
+      "group": "ECG",
+      "type": "binary",
+      "unit": null,
+      "description": "Tinversion",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        {
+          "label": "No / Absent",
+          "value": 0
+        },
+        {
+          "label": "Yes / Present",
+          "value": 1
+        }
+      ]
+    },
+    "LVH": {
+      "key": "LVH",
+      "label": "LVH",
+      "group": "ECG",
+      "type": "binary",
+      "unit": null,
+      "description": "Left Ventricular Hypertrophy",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        {
+          "label": "No / Absent",
+          "value": 0
+        },
+        {
+          "label": "Yes / Present",
+          "value": 1
+        }
+      ]
+    },
+    "Poor R Progression": {
+      "key": "Poor R Progression",
+      "label": "Poor R Progression",
+      "group": "ECG",
+      "type": "binary",
+      "unit": null,
+      "description": "Poor R Progression",
+      "min": 0,
+      "max": 1,
+      "default": 0,
+      "options": [
+        {
+          "label": "No / Absent",
+          "value": 0
+        },
+        {
+          "label": "Yes / Present",
+          "value": 1
+        }
+      ]
+    },
+    "BBB": {
+      "key": "BBB",
+      "label": "BBB",
+      "group": "ECG",
+      "type": "nominal",
+      "unit": null,
+      "description": "Bundle Branch Block (N, LBBB, RBBB)",
+      "options": [
+        {
+          "label": "LBBB",
+          "value": "LBBB"
+        },
+        {
+          "label": "N",
+          "value": "N"
+        },
+        {
+          "label": "RBBB",
+          "value": "RBBB"
+        }
+      ],
+      "default": "N"
+    },
+    "FBS": {
+      "key": "FBS",
+      "label": "FBS",
+      "group": "Laboratory",
+      "type": "numeric",
+      "unit": "mg/dL",
+      "description": "FBS",
+      "reference_range": [
+        70,
+        99
+      ],
+      "abnormal_below": "low",
+      "abnormal_above": "high",
+      "min": 62.0,
+      "max": 400.0,
+      "default": 98.0
+    },
+    "CR": {
+      "key": "CR",
+      "label": "CR",
+      "group": "Laboratory",
+      "type": "numeric",
+      "unit": "mg/dL",
+      "description": "CR",
+      "reference_range": [
+        0.6,
+        1.2
+      ],
+      "abnormal_below": null,
+      "abnormal_above": "high",
+      "min": 0.5,
+      "max": 2.2,
+      "default": 1.0
+    },
+    "TG": {
+      "key": "TG",
+      "label": "TG",
+      "group": "Laboratory",
+      "type": "numeric",
+      "unit": "mg/dL",
+      "description": "TG",
+      "reference_range": [
+        0,
+        150
+      ],
+      "abnormal_below": null,
+      "abnormal_above": "high",
+      "min": 37.0,
+      "max": 1050.0,
+      "default": 122.0
+    },
+    "LDL": {
+      "key": "LDL",
+      "label": "LDL",
+      "group": "Laboratory",
+      "type": "numeric",
+      "unit": "mg/dL",
+      "description": "LDL",
+      "reference_range": [
+        0,
+        100
+      ],
+      "abnormal_below": null,
+      "abnormal_above": "high",
+      "min": 18.0,
+      "max": 232.0,
+      "default": 100.0
+    },
+    "HDL": {
+      "key": "HDL",
+      "label": "HDL",
+      "group": "Laboratory",
+      "type": "numeric",
+      "unit": "mg/dL",
+      "description": "HDL",
+      "reference_range": [
+        40,
+        60
+      ],
+      "abnormal_below": "low",
+      "abnormal_above": null,
+      "min": 15.9,
+      "max": 111.0,
+      "default": 39.0
+    },
+    "BUN": {
+      "key": "BUN",
+      "label": "BUN",
+      "group": "Laboratory",
+      "type": "numeric",
+      "unit": "mg/dL",
+      "description": "BUN",
+      "reference_range": [
+        7,
+        20
+      ],
+      "abnormal_below": "low",
+      "abnormal_above": "high",
+      "min": 6.0,
+      "max": 52.0,
+      "default": 16.0
+    },
+    "ESR": {
+      "key": "ESR",
+      "label": "ESR",
+      "group": "Laboratory",
+      "type": "numeric",
+      "unit": "mm/hr",
+      "description": "ESR",
+      "reference_range": [
+        0,
+        20
+      ],
+      "abnormal_below": null,
+      "abnormal_above": "high",
+      "min": 1.0,
+      "max": 90.0,
+      "default": 15.0
+    },
+    "HB": {
+      "key": "HB",
+      "label": "HB",
+      "group": "Laboratory",
+      "type": "numeric",
+      "unit": "g/dL",
+      "description": "HB",
+      "reference_range": [
+        12.0,
+        17.5
+      ],
+      "abnormal_below": "low",
+      "abnormal_above": "high",
+      "min": 8.9,
+      "max": 17.6,
+      "default": 13.2
+    },
+    "K": {
+      "key": "K",
+      "label": "K",
+      "group": "Laboratory",
+      "type": "numeric",
+      "unit": "mEq/L",
+      "description": "K",
+      "reference_range": [
+        3.5,
+        5.0
+      ],
+      "abnormal_below": "low",
+      "abnormal_above": "high",
+      "min": 3.0,
+      "max": 6.6,
+      "default": 4.2
+    },
+    "Na": {
+      "key": "Na",
+      "label": "Na",
+      "group": "Laboratory",
+      "type": "numeric",
+      "unit": "mEq/L",
+      "description": "Na",
+      "reference_range": [
+        135,
+        145
+      ],
+      "abnormal_below": "low",
+      "abnormal_above": "high",
+      "min": 128.0,
+      "max": 156.0,
+      "default": 141.0
+    },
+    "WBC": {
+      "key": "WBC",
+      "label": "WBC",
+      "group": "Laboratory",
+      "type": "numeric",
+      "unit": "cells/mcL",
+      "description": "WBC",
+      "reference_range": [
+        4000,
+        11000
+      ],
+      "abnormal_below": "low",
+      "abnormal_above": "high",
+      "min": 3700.0,
+      "max": 18000.0,
+      "default": 7100.0
+    },
+    "Lymph": {
+      "key": "Lymph",
+      "label": "Lymph",
+      "group": "Laboratory",
+      "type": "numeric",
+      "unit": "%",
+      "description": "Lymph",
+      "reference_range": [
+        20,
+        40
+      ],
+      "abnormal_below": "low",
+      "abnormal_above": "high",
+      "min": 7.0,
+      "max": 60.0,
+      "default": 32.0
+    },
+    "Neut": {
+      "key": "Neut",
+      "label": "Neut",
+      "group": "Laboratory",
+      "type": "numeric",
+      "unit": "%",
+      "description": "Neut",
+      "reference_range": [
+        40,
+        70
+      ],
+      "abnormal_below": "low",
+      "abnormal_above": "high",
+      "min": 32.0,
+      "max": 89.0,
+      "default": 60.0
+    },
+    "PLT": {
+      "key": "PLT",
+      "label": "PLT",
+      "group": "Laboratory",
+      "type": "numeric",
+      "unit": "x10^3/mcL",
+      "description": "PLT",
+      "reference_range": [
+        150,
+        450
+      ],
+      "abnormal_below": "low",
+      "abnormal_above": "high",
+      "min": 25.0,
+      "max": 742.0,
+      "default": 210.0
+    },
+    "EF-TTE": {
+      "key": "EF-TTE",
+      "label": "EF-TTE",
+      "group": "Echocardiography",
+      "type": "numeric",
+      "unit": "%",
+      "description": "EF-TTE",
+      "reference_range": [
+        50,
+        70
+      ],
+      "abnormal_below": "low",
+      "abnormal_above": null,
+      "min": 15.0,
+      "max": 60.0,
+      "default": 50.0
+    },
+    "Region RWMA": {
+      "key": "Region RWMA",
+      "label": "Region RWMA",
+      "group": "Echocardiography",
+      "type": "nominal",
+      "unit": null,
+      "description": "Regional Wall Motion Abnormality score / territory (0=None, 1..4=Specific segments)",
+      "options": [
+        {
+          "label": "0",
+          "value": "0"
+        },
+        {
+          "label": "1",
+          "value": "1"
+        },
+        {
+          "label": "2",
+          "value": "2"
+        },
+        {
+          "label": "3",
+          "value": "3"
+        },
+        {
+          "label": "4",
+          "value": "4"
+        }
+      ],
+      "default": "0"
+    },
+    "VHD": {
+      "key": "VHD",
+      "label": "VHD",
+      "group": "Echocardiography",
+      "type": "nominal",
+      "unit": null,
+      "description": "Valvular Heart Disease severity (N, mild, moderate, severe)",
+      "options": [
+        {
+          "label": "Moderate",
+          "value": "Moderate"
+        },
+        {
+          "label": "N",
+          "value": "N"
+        },
+        {
+          "label": "Severe",
+          "value": "Severe"
+        },
+        {
+          "label": "mild",
+          "value": "mild"
+        }
+      ],
+      "default": "mild"
+    }
+  }
+}

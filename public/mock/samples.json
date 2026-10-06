@@ -1,0 +1,74 @@
+[
+  {
+    "id": "patient-low",
+    "name": "Case 1 — Low Predicted Risk",
+    "cohort_type": "Synthetic Archetype",
+    "description": "Synthetic archetype based on referred angiography cohort: younger age, non-anginal symptoms, preserved ejection fraction, and baseline vitals.",
+    "features": {
+      "Age": 42,
+      "Sex": 0,
+      "Current Smoker": 0,
+      "FH": 0,
+      "BP": 118,
+      "PR": 64,
+      "BMI": 22.8,
+      "LDL": 88,
+      "HDL": 62,
+      "TG": 105,
+      "FBS": 86,
+      "HTN": 0,
+      "Typical Chest Pain": 0,
+      "Atypical": 1,
+      "EF-TTE": 64,
+      "Region RWMA": 0
+    }
+  },
+  {
+    "id": "patient-mod",
+    "name": "Case 2 — Moderate Predicted Risk",
+    "cohort_type": "Synthetic Archetype",
+    "description": "Synthetic archetype based on referred angiography cohort: middle-aged, chronic hypertension, borderline dyslipidemia, and non-anginal presentation.",
+    "features": {
+      "Age": 58,
+      "Sex": 1,
+      "Current Smoker": 1,
+      "FH": 1,
+      "BP": 138,
+      "PR": 74,
+      "BMI": 27.5,
+      "LDL": 138,
+      "HDL": 44,
+      "TG": 175,
+      "FBS": 112,
+      "HTN": 1,
+      "Typical Chest Pain": 0,
+      "Atypical": 0,
+      "EF-TTE": 54,
+      "Region RWMA": 0
+    }
+  },
+  {
+    "id": "patient-high",
+    "name": "Case 3 — High Predicted Risk",
+    "cohort_type": "Synthetic Archetype",
+    "description": "Synthetic archetype based on referred angiography cohort: typical angina, documented hypertension, elevated LDL, and regional wall motion hypokinesia.",
+    "features": {
+      "Age": 67,
+      "Sex": 1,
+      "Current Smoker": 1,
+      "FH": 1,
+      "BP": 158,
+      "PR": 82,
+      "BMI": 29.4,
+      "LDL": 168,
+      "HDL": 36,
+      "TG": 220,
+      "FBS": 142,
+      "HTN": 1,
+      "Typical Chest Pain": 1,
+      "Atypical": 0,
+      "EF-TTE": 42,
+      "Region RWMA": 1
+    }
+  }
+]

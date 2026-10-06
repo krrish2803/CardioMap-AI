@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+cardiomap/venv/
+.venv/
+
+# Build output
+dist/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+cardiomap/.pytest_cache/
+
+# Env / secrets
+.env
+.env.local
+*.local
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

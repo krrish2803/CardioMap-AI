@@ -1,0 +1,13 @@
+target,model,outer_roc_auc_mean,outer_roc_auc_std,outer_roc_auc_se
+cad,logistic_regression,0.9125,0.0407,0.0105
+cad,random_forest,0.9276,0.0524,0.0135
+cad,xgboost,0.9186,0.0397,0.0103
+LAD,logistic_regression,0.8213,0.0531,0.0137
+LAD,random_forest,0.8529,0.0411,0.0106
+LAD,xgboost,0.8423,0.0404,0.0104
+LCX,logistic_regression,0.7076,0.0622,0.0161
+LCX,random_forest,0.7489,0.0561,0.0145
+LCX,xgboost,0.7259,0.0676,0.0175
+RCA,logistic_regression,0.7029,0.0669,0.0173
+RCA,random_forest,0.7037,0.0535,0.0138
+RCA,xgboost,0.6991,0.0642,0.0166

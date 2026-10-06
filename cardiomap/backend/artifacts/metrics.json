@@ -1,0 +1,1950 @@
+{
+  "timestamp": "2026-10-04T16:54:35.334621",
+  "model_version": "v1.0.0-1791132875",
+  "dataset_n": 303,
+  "validation_strategy": "Nested CV: RepeatedStratifiedKFold(5 folds x 3 repeats = 15 outer folds), Inner StratifiedKFold(3)",
+  "calibration_method": "CalibratedClassifierCV(method='sigmoid', cv=5)",
+  "serving_note": "Final serving models are refit with calibration on 100% of data. Metrics report unbiased nested CV out-of-fold performance.",
+  "targets": {
+    "cad": {
+      "selected_model": "random_forest",
+      "selection_reason": "Highest outer ROC-AUC (0.928).",
+      "best_hyperparameters": {
+        "classifier__min_samples_leaf": 3,
+        "classifier__max_features": "sqrt",
+        "classifier__max_depth": 3
+      },
+      "optimal_threshold": 0.41,
+      "nested_cv_oof_metrics": {
+        "accuracy": {
+          "value": 0.8802,
+          "ci_95": [
+            0.8388,
+            0.9215
+          ]
+        },
+        "precision": {
+          "value": 0.8956,
+          "ci_95": [
+            0.85,
+            0.9368
+          ]
+        },
+        "recall": {
+          "value": 0.9422,
+          "ci_95": [
+            0.905,
+            0.9753
+          ]
+        },
+        "specificity": {
+          "value": 0.7246,
+          "ci_95": [
+            0.6176,
+            0.8267
+          ]
+        },
+        "f1": {
+          "value": 0.9183,
+          "ci_95": [
+            0.8864,
+            0.9465
+          ]
+        },
+        "roc_auc": {
+          "value": 0.9264,
+          "ci_95": [
+            0.8886,
+            0.9586
+          ]
+        },
+        "pr_auc": {
+          "value": 0.968,
+          "ci_95": [
+            0.9453,
+            0.9847
+          ]
+        },
+        "brier_score": {
+          "value": 0.1219,
+          "ci_95": [
+            0.1073,
+            0.1366
+          ]
+        }
+      },
+      "metrics_at_default_0_5": {
+        "accuracy": 0.8512,
+        "precision": 0.9102,
+        "recall": 0.8786,
+        "specificity": 0.7826,
+        "f1": 0.8941,
+        "roc_auc": 0.9264,
+        "pr_auc": 0.968,
+        "brier_score": 0.1219
+      },
+      "holdout_test_metrics_secondary": {
+        "accuracy": {
+          "value": 0.8525,
+          "ci_95": [
+            0.7541,
+            0.9344
+          ]
+        },
+        "precision": {
+          "value": 0.84,
+          "ci_95": [
+            0.7347,
+            0.9375
+          ]
+        },
+        "recall": {
+          "value": 0.9767,
+          "ci_95": [
+            0.9268,
+            1.0
+          ]
+        },
+        "specificity": {
+          "value": 0.5556,
+          "ci_95": [
+            0.3157,
+            0.7895
+          ]
+        },
+        "f1": {
+          "value": 0.9032,
+          "ci_95": [
+            0.8352,
+            0.9574
+          ]
+        },
+        "roc_auc": {
+          "value": 0.8579,
+          "ci_95": [
+            0.742,
+            0.951
+          ]
+        },
+        "pr_auc": {
+          "value": 0.9305,
+          "ci_95": [
+            0.8649,
+            0.9825
+          ]
+        },
+        "brier_score": {
+          "value": 0.1258,
+          "ci_95": [
+            0.0763,
+            0.182
+          ]
+        }
+      },
+      "roc_curve": [
+        {
+          "fpr": 0.0,
+          "tpr": 0.0
+        },
+        {
+          "fpr": 0.0,
+          "tpr": 0.0058
+        },
+        {
+          "fpr": 0.0,
+          "tpr": 0.2197
+        },
+        {
+          "fpr": 0.0145,
+          "tpr": 0.2197
+        },
+        {
+          "fpr": 0.0145,
+          "tpr": 0.6243
+        },
+        {
+          "fpr": 0.029,
+          "tpr": 0.6243
+        },
+        {
+          "fpr": 0.029,
+          "tpr": 0.7168
+        },
+        {
+          "fpr": 0.0435,
+          "tpr": 0.7168
+        },
+        {
+          "fpr": 0.0435,
+          "tpr": 0.7514
+        },
+        {
+          "fpr": 0.0725,
+          "tpr": 0.7514
+        },
+        {
+          "fpr": 0.0725,
+          "tpr": 0.763
+        },
+        {
+          "fpr": 0.087,
+          "tpr": 0.763
+        },
+        {
+          "fpr": 0.087,
+          "tpr": 0.7746
+        },
+        {
+          "fpr": 0.1014,
+          "tpr": 0.7746
+        },
+        {
+          "fpr": 0.1014,
+          "tpr": 0.8266
+        },
+        {
+          "fpr": 0.1159,
+          "tpr": 0.8266
+        },
+        {
+          "fpr": 0.1159,
+          "tpr": 0.8497
+        },
+        {
+          "fpr": 0.1594,
+          "tpr": 0.8497
+        },
+        {
+          "fpr": 0.1594,
+          "tpr": 0.8555
+        },
+        {
+          "fpr": 0.2029,
+          "tpr": 0.8555
+        },
+        {
+          "fpr": 0.2029,
+          "tpr": 0.8613
+        },
+        {
+          "fpr": 0.2174,
+          "tpr": 0.8613
+        },
+        {
+          "fpr": 0.2174,
+          "tpr": 0.8844
+        },
+        {
+          "fpr": 0.2319,
+          "tpr": 0.8844
+        },
+        {
+          "fpr": 0.2319,
+          "tpr": 0.9191
+        },
+        {
+          "fpr": 0.2464,
+          "tpr": 0.9191
+        },
+        {
+          "fpr": 0.2464,
+          "tpr": 0.9306
+        },
+        {
+          "fpr": 0.2609,
+          "tpr": 0.9306
+        },
+        {
+          "fpr": 0.2609,
+          "tpr": 0.9364
+        },
+        {
+          "fpr": 0.2754,
+          "tpr": 0.9364
+        },
+        {
+          "fpr": 0.2754,
+          "tpr": 0.9422
+        },
+        {
+          "fpr": 0.2899,
+          "tpr": 0.9422
+        },
+        {
+          "fpr": 0.2899,
+          "tpr": 0.948
+        },
+        {
+          "fpr": 0.3623,
+          "tpr": 0.948
+        },
+        {
+          "fpr": 0.3623,
+          "tpr": 0.9538
+        },
+        {
+          "fpr": 0.3913,
+          "tpr": 0.9538
+        },
+        {
+          "fpr": 0.3913,
+          "tpr": 0.9595
+        },
+        {
+          "fpr": 0.4638,
+          "tpr": 0.9595
+        },
+        {
+          "fpr": 0.4638,
+          "tpr": 0.9653
+        },
+        {
+          "fpr": 0.5217,
+          "tpr": 0.9653
+        },
+        {
+          "fpr": 0.5217,
+          "tpr": 0.9769
+        },
+        {
+          "fpr": 0.6232,
+          "tpr": 0.9769
+        },
+        {
+          "fpr": 0.6232,
+          "tpr": 0.9827
+        },
+        {
+          "fpr": 0.6957,
+          "tpr": 0.9827
+        },
+        {
+          "fpr": 0.6957,
+          "tpr": 0.9884
+        },
+        {
+          "fpr": 0.8841,
+          "tpr": 0.9884
+        },
+        {
+          "fpr": 0.8841,
+          "tpr": 0.9942
+        },
+        {
+          "fpr": 0.8986,
+          "tpr": 0.9942
+        },
+        {
+          "fpr": 0.8986,
+          "tpr": 1.0
+        },
+        {
+          "fpr": 1.0,
+          "tpr": 1.0
+        }
+      ],
+      "pr_curve": [
+        {
+          "recall": 1.0,
+          "precision": 0.7149
+        },
+        {
+          "recall": 0.9942,
+          "precision": 0.735
+        },
+        {
+          "recall": 0.9884,
+          "precision": 0.7566
+        },
+        {
+          "recall": 0.9827,
+          "precision": 0.7798
+        },
+        {
+          "recall": 0.9769,
+          "precision": 0.8048
+        },
+        {
+          "recall": 0.9653,
+          "precision": 0.8267
+        },
+        {
+          "recall": 0.9595,
+          "precision": 0.8557
+        },
+        {
+          "recall": 0.948,
+          "precision": 0.8817
+        },
+        {
+          "recall": 0.9306,
+          "precision": 0.9045
+        },
+        {
+          "recall": 0.8902,
+          "precision": 0.9059
+        },
+        {
+          "recall": 0.8555,
+          "precision": 0.9136
+        },
+        {
+          "recall": 0.8439,
+          "precision": 0.9481
+        },
+        {
+          "recall": 0.8035,
+          "precision": 0.9521
+        },
+        {
+          "recall": 0.763,
+          "precision": 0.9565
+        },
+        {
+          "recall": 0.7341,
+          "precision": 0.9769
+        },
+        {
+          "recall": 0.6936,
+          "precision": 0.9836
+        },
+        {
+          "recall": 0.6474,
+          "precision": 0.9825
+        },
+        {
+          "recall": 0.6069,
+          "precision": 0.9906
+        },
+        {
+          "recall": 0.5607,
+          "precision": 0.9898
+        },
+        {
+          "recall": 0.5145,
+          "precision": 0.9889
+        },
+        {
+          "recall": 0.4682,
+          "precision": 0.9878
+        },
+        {
+          "recall": 0.422,
+          "precision": 0.9865
+        },
+        {
+          "recall": 0.3757,
+          "precision": 0.9848
+        },
+        {
+          "recall": 0.3295,
+          "precision": 0.9828
+        },
+        {
+          "recall": 0.2832,
+          "precision": 0.98
+        },
+        {
+          "recall": 0.237,
+          "precision": 0.9762
+        },
+        {
+          "recall": 0.1965,
+          "precision": 1.0
+        },
+        {
+          "recall": 0.1503,
+          "precision": 1.0
+        },
+        {
+          "recall": 0.104,
+          "precision": 1.0
+        },
+        {
+          "recall": 0.0578,
+          "precision": 1.0
+        },
+        {
+          "recall": 0.0116,
+          "precision": 1.0
+        }
+      ],
+      "calibration_curve": [
+        {
+          "pred": 0.2595,
+          "obs": 0.12
+        },
+        {
+          "pred": 0.3473,
+          "obs": 0.1667
+        },
+        {
+          "pred": 0.4265,
+          "obs": 0.5417
+        },
+        {
+          "pred": 0.5574,
+          "obs": 0.625
+        },
+        {
+          "pred": 0.6439,
+          "obs": 0.7917
+        },
+        {
+          "pred": 0.7153,
+          "obs": 0.9583
+        },
+        {
+          "pred": 0.7616,
+          "obs": 1.0
+        },
+        {
+          "pred": 0.7998,
+          "obs": 1.0
+        },
+        {
+          "pred": 0.8378,
+          "obs": 0.9583
+        },
+        {
+          "pred": 0.8943,
+          "obs": 1.0
+        }
+      ]
+    },
+    "LAD": {
+      "selected_model": "random_forest",
+      "selection_reason": "Highest outer ROC-AUC (0.853).",
+      "best_hyperparameters": {
+        "classifier__min_samples_leaf": 3,
+        "classifier__max_features": "sqrt",
+        "classifier__max_depth": 3
+      },
+      "optimal_threshold": 0.48,
+      "nested_cv_oof_metrics": {
+        "accuracy": {
+          "value": 0.8099,
+          "ci_95": [
+            0.7603,
+            0.8554
+          ]
+        },
+        "precision": {
+          "value": 0.805,
+          "ci_95": [
+            0.7421,
+            0.8625
+          ]
+        },
+        "recall": {
+          "value": 0.8951,
+          "ci_95": [
+            0.8446,
+            0.9412
+          ]
+        },
+        "specificity": {
+          "value": 0.6869,
+          "ci_95": [
+            0.5934,
+            0.7742
+          ]
+        },
+        "f1": {
+          "value": 0.8477,
+          "ci_95": [
+            0.8028,
+            0.8889
+          ]
+        },
+        "roc_auc": {
+          "value": 0.8515,
+          "ci_95": [
+            0.7982,
+            0.8994
+          ]
+        },
+        "pr_auc": {
+          "value": 0.8847,
+          "ci_95": [
+            0.8331,
+            0.9305
+          ]
+        },
+        "brier_score": {
+          "value": 0.166,
+          "ci_95": [
+            0.1496,
+            0.1829
+          ]
+        }
+      },
+      "metrics_at_default_0_5": {
+        "accuracy": 0.7975,
+        "precision": 0.8133,
+        "recall": 0.8531,
+        "specificity": 0.7172,
+        "f1": 0.8328,
+        "roc_auc": 0.8515,
+        "pr_auc": 0.8847,
+        "brier_score": 0.166
+      },
+      "holdout_test_metrics_secondary": {
+        "accuracy": {
+          "value": 0.6885,
+          "ci_95": [
+            0.5574,
+            0.8033
+          ]
+        },
+        "precision": {
+          "value": 0.6829,
+          "ci_95": [
+            0.5348,
+            0.8205
+          ]
+        },
+        "recall": {
+          "value": 0.8235,
+          "ci_95": [
+            0.6667,
+            0.9355
+          ]
+        },
+        "specificity": {
+          "value": 0.5185,
+          "ci_95": [
+            0.3213,
+            0.7
+          ]
+        },
+        "f1": {
+          "value": 0.7467,
+          "ci_95": [
+            0.6154,
+            0.8421
+          ]
+        },
+        "roc_auc": {
+          "value": 0.7832,
+          "ci_95": [
+            0.6578,
+            0.8867
+          ]
+        },
+        "pr_auc": {
+          "value": 0.8199,
+          "ci_95": [
+            0.6948,
+            0.9212
+          ]
+        },
+        "brier_score": {
+          "value": 0.1904,
+          "ci_95": [
+            0.1409,
+            0.2508
+          ]
+        }
+      },
+      "roc_curve": [
+        {
+          "fpr": 0.0,
+          "tpr": 0.0
+        },
+        {
+          "fpr": 0.0,
+          "tpr": 0.1818
+        },
+        {
+          "fpr": 0.0101,
+          "tpr": 0.2448
+        },
+        {
+          "fpr": 0.0404,
+          "tpr": 0.3497
+        },
+        {
+          "fpr": 0.0505,
+          "tpr": 0.3776
+        },
+        {
+          "fpr": 0.0606,
+          "tpr": 0.4266
+        },
+        {
+          "fpr": 0.0808,
+          "tpr": 0.4545
+        },
+        {
+          "fpr": 0.0909,
+          "tpr": 0.5105
+        },
+        {
+          "fpr": 0.101,
+          "tpr": 0.5175
+        },
+        {
+          "fpr": 0.1111,
+          "tpr": 0.5874
+        },
+        {
+          "fpr": 0.1212,
+          "tpr": 0.6084
+        },
+        {
+          "fpr": 0.1313,
+          "tpr": 0.6434
+        },
+        {
+          "fpr": 0.1515,
+          "tpr": 0.6923
+        },
+        {
+          "fpr": 0.1616,
+          "tpr": 0.7133
+        },
+        {
+          "fpr": 0.1717,
+          "tpr": 0.7273
+        },
+        {
+          "fpr": 0.1818,
+          "tpr": 0.7343
+        },
+        {
+          "fpr": 0.1919,
+          "tpr": 0.7413
+        },
+        {
+          "fpr": 0.202,
+          "tpr": 0.7483
+        },
+        {
+          "fpr": 0.2121,
+          "tpr": 0.7622
+        },
+        {
+          "fpr": 0.2222,
+          "tpr": 0.7762
+        },
+        {
+          "fpr": 0.2323,
+          "tpr": 0.7972
+        },
+        {
+          "fpr": 0.2626,
+          "tpr": 0.8531
+        },
+        {
+          "fpr": 0.2828,
+          "tpr": 0.8601
+        },
+        {
+          "fpr": 0.2929,
+          "tpr": 0.8671
+        },
+        {
+          "fpr": 0.303,
+          "tpr": 0.8951
+        },
+        {
+          "fpr": 0.3434,
+          "tpr": 0.9021
+        },
+        {
+          "fpr": 0.3535,
+          "tpr": 0.9091
+        },
+        {
+          "fpr": 0.4545,
+          "tpr": 0.9161
+        },
+        {
+          "fpr": 0.4848,
+          "tpr": 0.9231
+        },
+        {
+          "fpr": 0.5051,
+          "tpr": 0.9301
+        },
+        {
+          "fpr": 0.5152,
+          "tpr": 0.951
+        },
+        {
+          "fpr": 0.5354,
+          "tpr": 0.958
+        },
+        {
+          "fpr": 0.5455,
+          "tpr": 0.965
+        },
+        {
+          "fpr": 0.6162,
+          "tpr": 0.972
+        },
+        {
+          "fpr": 0.7273,
+          "tpr": 0.979
+        },
+        {
+          "fpr": 0.8081,
+          "tpr": 0.986
+        },
+        {
+          "fpr": 0.8889,
+          "tpr": 0.993
+        },
+        {
+          "fpr": 0.899,
+          "tpr": 1.0
+        },
+        {
+          "fpr": 1.0,
+          "tpr": 1.0
+        }
+      ],
+      "pr_curve": [
+        {
+          "recall": 1.0,
+          "precision": 0.5909
+        },
+        {
+          "recall": 1.0,
+          "precision": 0.6111
+        },
+        {
+          "recall": 0.986,
+          "precision": 0.6239
+        },
+        {
+          "recall": 0.979,
+          "precision": 0.6422
+        },
+        {
+          "recall": 0.972,
+          "precision": 0.6619
+        },
+        {
+          "recall": 0.972,
+          "precision": 0.6881
+        },
+        {
+          "recall": 0.965,
+          "precision": 0.7113
+        },
+        {
+          "recall": 0.9441,
+          "precision": 0.7258
+        },
+        {
+          "recall": 0.9161,
+          "precision": 0.736
+        },
+        {
+          "recall": 0.9091,
+          "precision": 0.7647
+        },
+        {
+          "recall": 0.8951,
+          "precision": 0.7901
+        },
+        {
+          "recall": 0.8671,
+          "precision": 0.8052
+        },
+        {
+          "recall": 0.8392,
+          "precision": 0.8219
+        },
+        {
+          "recall": 0.7972,
+          "precision": 0.8261
+        },
+        {
+          "recall": 0.7622,
+          "precision": 0.8385
+        },
+        {
+          "recall": 0.7273,
+          "precision": 0.8525
+        },
+        {
+          "recall": 0.6923,
+          "precision": 0.8684
+        },
+        {
+          "recall": 0.6434,
+          "precision": 0.8679
+        },
+        {
+          "recall": 0.6014,
+          "precision": 0.8776
+        },
+        {
+          "recall": 0.5524,
+          "precision": 0.8778
+        },
+        {
+          "recall": 0.5105,
+          "precision": 0.8902
+        },
+        {
+          "recall": 0.4545,
+          "precision": 0.8784
+        },
+        {
+          "recall": 0.4196,
+          "precision": 0.9091
+        },
+        {
+          "recall": 0.3706,
+          "precision": 0.9138
+        },
+        {
+          "recall": 0.3217,
+          "precision": 0.92
+        },
+        {
+          "recall": 0.2657,
+          "precision": 0.9048
+        },
+        {
+          "recall": 0.2308,
+          "precision": 0.9706
+        },
+        {
+          "recall": 0.1818,
+          "precision": 1.0
+        },
+        {
+          "recall": 0.1259,
+          "precision": 1.0
+        },
+        {
+          "recall": 0.0699,
+          "precision": 1.0
+        },
+        {
+          "recall": 0.014,
+          "precision": 1.0
+        }
+      ],
+      "calibration_curve": [
+        {
+          "pred": 0.2047,
+          "obs": 0.12
+        },
+        {
+          "pred": 0.2985,
+          "obs": 0.0833
+        },
+        {
+          "pred": 0.3775,
+          "obs": 0.3333
+        },
+        {
+          "pred": 0.4733,
+          "obs": 0.4583
+        },
+        {
+          "pred": 0.5367,
+          "obs": 0.625
+        },
+        {
+          "pred": 0.5875,
+          "obs": 0.7917
+        },
+        {
+          "pred": 0.6468,
+          "obs": 0.8333
+        },
+        {
+          "pred": 0.7037,
+          "obs": 0.8333
+        },
+        {
+          "pred": 0.752,
+          "obs": 0.8333
+        },
+        {
+          "pred": 0.8117,
+          "obs": 1.0
+        }
+      ]
+    },
+    "LCX": {
+      "selected_model": "random_forest",
+      "selection_reason": "Highest outer ROC-AUC (0.749).",
+      "best_hyperparameters": {
+        "classifier__min_samples_leaf": 10,
+        "classifier__max_features": "sqrt",
+        "classifier__max_depth": 5
+      },
+      "optimal_threshold": 0.45,
+      "nested_cv_oof_metrics": {
+        "accuracy": {
+          "value": 0.6818,
+          "ci_95": [
+            0.624,
+            0.7397
+          ]
+        },
+        "precision": {
+          "value": 0.5635,
+          "ci_95": [
+            0.4758,
+            0.6515
+          ]
+        },
+        "recall": {
+          "value": 0.7634,
+          "ci_95": [
+            0.675,
+            0.8481
+          ]
+        },
+        "specificity": {
+          "value": 0.6309,
+          "ci_95": [
+            0.5541,
+            0.7064
+          ]
+        },
+        "f1": {
+          "value": 0.6484,
+          "ci_95": [
+            0.5714,
+            0.7186
+          ]
+        },
+        "roc_auc": {
+          "value": 0.7463,
+          "ci_95": [
+            0.683,
+            0.8047
+          ]
+        },
+        "pr_auc": {
+          "value": 0.6152,
+          "ci_95": [
+            0.5165,
+            0.7284
+          ]
+        },
+        "brier_score": {
+          "value": 0.2066,
+          "ci_95": [
+            0.1936,
+            0.2201
+          ]
+        }
+      },
+      "metrics_at_default_0_5": {
+        "accuracy": 0.6736,
+        "precision": 0.5795,
+        "recall": 0.5484,
+        "specificity": 0.7517,
+        "f1": 0.5635,
+        "roc_auc": 0.7463,
+        "pr_auc": 0.6152,
+        "brier_score": 0.2066
+      },
+      "holdout_test_metrics_secondary": {
+        "accuracy": {
+          "value": 0.6721,
+          "ci_95": [
+            0.541,
+            0.7869
+          ]
+        },
+        "precision": {
+          "value": 0.6364,
+          "ci_95": [
+            0.4348,
+            0.8183
+          ]
+        },
+        "recall": {
+          "value": 0.5385,
+          "ci_95": [
+            0.3435,
+            0.7308
+          ]
+        },
+        "specificity": {
+          "value": 0.7714,
+          "ci_95": [
+            0.6111,
+            0.9001
+          ]
+        },
+        "f1": {
+          "value": 0.5833,
+          "ci_95": [
+            0.3921,
+            0.7274
+          ]
+        },
+        "roc_auc": {
+          "value": 0.7165,
+          "ci_95": [
+            0.5757,
+            0.8388
+          ]
+        },
+        "pr_auc": {
+          "value": 0.6058,
+          "ci_95": [
+            0.4479,
+            0.8155
+          ]
+        },
+        "brier_score": {
+          "value": 0.212,
+          "ci_95": [
+            0.1716,
+            0.2565
+          ]
+        }
+      },
+      "roc_curve": [
+        {
+          "fpr": 0.0,
+          "tpr": 0.0
+        },
+        {
+          "fpr": 0.0134,
+          "tpr": 0.0323
+        },
+        {
+          "fpr": 0.0201,
+          "tpr": 0.1505
+        },
+        {
+          "fpr": 0.0336,
+          "tpr": 0.1613
+        },
+        {
+          "fpr": 0.0403,
+          "tpr": 0.2043
+        },
+        {
+          "fpr": 0.0671,
+          "tpr": 0.2366
+        },
+        {
+          "fpr": 0.0805,
+          "tpr": 0.2796
+        },
+        {
+          "fpr": 0.094,
+          "tpr": 0.2903
+        },
+        {
+          "fpr": 0.1007,
+          "tpr": 0.3333
+        },
+        {
+          "fpr": 0.1275,
+          "tpr": 0.3763
+        },
+        {
+          "fpr": 0.1342,
+          "tpr": 0.4194
+        },
+        {
+          "fpr": 0.1544,
+          "tpr": 0.4409
+        },
+        {
+          "fpr": 0.1611,
+          "tpr": 0.4624
+        },
+        {
+          "fpr": 0.2013,
+          "tpr": 0.4731
+        },
+        {
+          "fpr": 0.2148,
+          "tpr": 0.4946
+        },
+        {
+          "fpr": 0.2282,
+          "tpr": 0.5054
+        },
+        {
+          "fpr": 0.2349,
+          "tpr": 0.5376
+        },
+        {
+          "fpr": 0.2483,
+          "tpr": 0.5484
+        },
+        {
+          "fpr": 0.255,
+          "tpr": 0.6022
+        },
+        {
+          "fpr": 0.2685,
+          "tpr": 0.6237
+        },
+        {
+          "fpr": 0.2752,
+          "tpr": 0.6774
+        },
+        {
+          "fpr": 0.302,
+          "tpr": 0.6989
+        },
+        {
+          "fpr": 0.3221,
+          "tpr": 0.7312
+        },
+        {
+          "fpr": 0.4027,
+          "tpr": 0.7634
+        },
+        {
+          "fpr": 0.4228,
+          "tpr": 0.7957
+        },
+        {
+          "fpr": 0.5302,
+          "tpr": 0.8172
+        },
+        {
+          "fpr": 0.5369,
+          "tpr": 0.8495
+        },
+        {
+          "fpr": 0.5906,
+          "tpr": 0.871
+        },
+        {
+          "fpr": 0.604,
+          "tpr": 0.9247
+        },
+        {
+          "fpr": 0.6711,
+          "tpr": 0.9355
+        },
+        {
+          "fpr": 0.6779,
+          "tpr": 0.957
+        },
+        {
+          "fpr": 0.7919,
+          "tpr": 0.9677
+        },
+        {
+          "fpr": 0.906,
+          "tpr": 0.9892
+        },
+        {
+          "fpr": 1.0,
+          "tpr": 1.0
+        }
+      ],
+      "pr_curve": [
+        {
+          "recall": 1.0,
+          "precision": 0.3843
+        },
+        {
+          "recall": 0.9892,
+          "precision": 0.3932
+        },
+        {
+          "recall": 0.9785,
+          "precision": 0.4027
+        },
+        {
+          "recall": 0.9785,
+          "precision": 0.4174
+        },
+        {
+          "recall": 0.9785,
+          "precision": 0.4333
+        },
+        {
+          "recall": 0.9677,
+          "precision": 0.4455
+        },
+        {
+          "recall": 0.9677,
+          "precision": 0.4639
+        },
+        {
+          "recall": 0.9355,
+          "precision": 0.4677
+        },
+        {
+          "recall": 0.9247,
+          "precision": 0.4831
+        },
+        {
+          "recall": 0.8817,
+          "precision": 0.4824
+        },
+        {
+          "recall": 0.8495,
+          "precision": 0.4877
+        },
+        {
+          "recall": 0.8172,
+          "precision": 0.4935
+        },
+        {
+          "recall": 0.8172,
+          "precision": 0.5205
+        },
+        {
+          "recall": 0.7957,
+          "precision": 0.5362
+        },
+        {
+          "recall": 0.7634,
+          "precision": 0.5462
+        },
+        {
+          "recall": 0.7312,
+          "precision": 0.5574
+        },
+        {
+          "recall": 0.7097,
+          "precision": 0.5789
+        },
+        {
+          "recall": 0.6774,
+          "precision": 0.5943
+        },
+        {
+          "recall": 0.6237,
+          "precision": 0.5918
+        },
+        {
+          "recall": 0.5591,
+          "precision": 0.5778
+        },
+        {
+          "recall": 0.5161,
+          "precision": 0.5854
+        },
+        {
+          "recall": 0.4731,
+          "precision": 0.5946
+        },
+        {
+          "recall": 0.4516,
+          "precision": 0.6364
+        },
+        {
+          "recall": 0.4086,
+          "precision": 0.6552
+        },
+        {
+          "recall": 0.3441,
+          "precision": 0.64
+        },
+        {
+          "recall": 0.3011,
+          "precision": 0.6667
+        },
+        {
+          "recall": 0.2581,
+          "precision": 0.7059
+        },
+        {
+          "recall": 0.2043,
+          "precision": 0.7308
+        },
+        {
+          "recall": 0.1505,
+          "precision": 0.7778
+        },
+        {
+          "recall": 0.0753,
+          "precision": 0.7
+        },
+        {
+          "recall": 0.0108,
+          "precision": 0.5
+        }
+      ],
+      "calibration_curve": [
+        {
+          "pred": 0.2367,
+          "obs": 0.08
+        },
+        {
+          "pred": 0.3048,
+          "obs": 0.0417
+        },
+        {
+          "pred": 0.3577,
+          "obs": 0.375
+        },
+        {
+          "pred": 0.3971,
+          "obs": 0.2083
+        },
+        {
+          "pred": 0.4379,
+          "obs": 0.3333
+        },
+        {
+          "pred": 0.4701,
+          "obs": 0.4167
+        },
+        {
+          "pred": 0.5043,
+          "obs": 0.5833
+        },
+        {
+          "pred": 0.5433,
+          "obs": 0.5417
+        },
+        {
+          "pred": 0.5818,
+          "obs": 0.5
+        },
+        {
+          "pred": 0.6506,
+          "obs": 0.76
+        }
+      ]
+    },
+    "RCA": {
+      "selected_model": "logistic_regression",
+      "selection_reason": "Logistic Regression (0.703) within 1 SE (0.014) of best model random_forest (0.704); parsimony preferred.",
+      "best_hyperparameters": {
+        "classifier__C": 0.1,
+        "classifier__l1_ratio": 0.0
+      },
+      "optimal_threshold": 0.42,
+      "nested_cv_oof_metrics": {
+        "accuracy": {
+          "value": 0.6653,
+          "ci_95": [
+            0.6033,
+            0.7231
+          ]
+        },
+        "precision": {
+          "value": 0.5474,
+          "ci_95": [
+            0.461,
+            0.6312
+          ]
+        },
+        "recall": {
+          "value": 0.7979,
+          "ci_95": [
+            0.7159,
+            0.8738
+          ]
+        },
+        "specificity": {
+          "value": 0.5811,
+          "ci_95": [
+            0.5,
+            0.662
+          ]
+        },
+        "f1": {
+          "value": 0.6494,
+          "ci_95": [
+            0.574,
+            0.7171
+          ]
+        },
+        "roc_auc": {
+          "value": 0.7129,
+          "ci_95": [
+            0.6494,
+            0.7749
+          ]
+        },
+        "pr_auc": {
+          "value": 0.598,
+          "ci_95": [
+            0.5015,
+            0.6953
+          ]
+        },
+        "brier_score": {
+          "value": 0.2148,
+          "ci_95": [
+            0.1931,
+            0.2369
+          ]
+        }
+      },
+      "metrics_at_default_0_5": {
+        "accuracy": 0.6488,
+        "precision": 0.5421,
+        "recall": 0.617,
+        "specificity": 0.6689,
+        "f1": 0.5771,
+        "roc_auc": 0.7129,
+        "pr_auc": 0.598,
+        "brier_score": 0.2148
+      },
+      "holdout_test_metrics_secondary": {
+        "accuracy": {
+          "value": 0.7049,
+          "ci_95": [
+            0.5902,
+            0.8037
+          ]
+        },
+        "precision": {
+          "value": 0.5455,
+          "ci_95": [
+            0.3182,
+            0.76
+          ]
+        },
+        "recall": {
+          "value": 0.6,
+          "ci_95": [
+            0.3635,
+            0.8125
+          ]
+        },
+        "specificity": {
+          "value": 0.7561,
+          "ci_95": [
+            0.625,
+            0.8751
+          ]
+        },
+        "f1": {
+          "value": 0.5714,
+          "ci_95": [
+            0.3683,
+            0.7273
+          ]
+        },
+        "roc_auc": {
+          "value": 0.7305,
+          "ci_95": [
+            0.6037,
+            0.85
+          ]
+        },
+        "pr_auc": {
+          "value": 0.5306,
+          "ci_95": [
+            0.3501,
+            0.7633
+          ]
+        },
+        "brier_score": {
+          "value": 0.1949,
+          "ci_95": [
+            0.1541,
+            0.236
+          ]
+        }
+      },
+      "roc_curve": [
+        {
+          "fpr": 0.0,
+          "tpr": 0.0
+        },
+        {
+          "fpr": 0.0068,
+          "tpr": 0.0319
+        },
+        {
+          "fpr": 0.0135,
+          "tpr": 0.0957
+        },
+        {
+          "fpr": 0.0338,
+          "tpr": 0.1383
+        },
+        {
+          "fpr": 0.0473,
+          "tpr": 0.1809
+        },
+        {
+          "fpr": 0.0676,
+          "tpr": 0.1915
+        },
+        {
+          "fpr": 0.0743,
+          "tpr": 0.2553
+        },
+        {
+          "fpr": 0.1419,
+          "tpr": 0.2979
+        },
+        {
+          "fpr": 0.1554,
+          "tpr": 0.3191
+        },
+        {
+          "fpr": 0.1689,
+          "tpr": 0.3298
+        },
+        {
+          "fpr": 0.1757,
+          "tpr": 0.3617
+        },
+        {
+          "fpr": 0.2027,
+          "tpr": 0.3723
+        },
+        {
+          "fpr": 0.2095,
+          "tpr": 0.4043
+        },
+        {
+          "fpr": 0.2297,
+          "tpr": 0.4149
+        },
+        {
+          "fpr": 0.2635,
+          "tpr": 0.4681
+        },
+        {
+          "fpr": 0.277,
+          "tpr": 0.4787
+        },
+        {
+          "fpr": 0.2905,
+          "tpr": 0.5745
+        },
+        {
+          "fpr": 0.3176,
+          "tpr": 0.5851
+        },
+        {
+          "fpr": 0.3243,
+          "tpr": 0.617
+        },
+        {
+          "fpr": 0.3446,
+          "tpr": 0.6277
+        },
+        {
+          "fpr": 0.3514,
+          "tpr": 0.6809
+        },
+        {
+          "fpr": 0.3851,
+          "tpr": 0.6915
+        },
+        {
+          "fpr": 0.3986,
+          "tpr": 0.7553
+        },
+        {
+          "fpr": 0.4865,
+          "tpr": 0.7979
+        },
+        {
+          "fpr": 0.5,
+          "tpr": 0.8511
+        },
+        {
+          "fpr": 0.5338,
+          "tpr": 0.8723
+        },
+        {
+          "fpr": 0.6081,
+          "tpr": 0.9149
+        },
+        {
+          "fpr": 0.6959,
+          "tpr": 0.9255
+        },
+        {
+          "fpr": 0.7027,
+          "tpr": 0.9468
+        },
+        {
+          "fpr": 0.8041,
+          "tpr": 0.9574
+        },
+        {
+          "fpr": 0.8378,
+          "tpr": 0.9787
+        },
+        {
+          "fpr": 1.0,
+          "tpr": 0.9894
+        },
+        {
+          "fpr": 1.0,
+          "tpr": 1.0
+        }
+      ],
+      "pr_curve": [
+        {
+          "recall": 1.0,
+          "precision": 0.3884
+        },
+        {
+          "recall": 0.9787,
+          "precision": 0.3932
+        },
+        {
+          "recall": 0.9787,
+          "precision": 0.4071
+        },
+        {
+          "recall": 0.9787,
+          "precision": 0.422
+        },
+        {
+          "recall": 0.9681,
+          "precision": 0.4333
+        },
+        {
+          "recall": 0.9574,
+          "precision": 0.4455
+        },
+        {
+          "recall": 0.9468,
+          "precision": 0.4588
+        },
+        {
+          "recall": 0.9255,
+          "precision": 0.4677
+        },
+        {
+          "recall": 0.9149,
+          "precision": 0.4831
+        },
+        {
+          "recall": 0.883,
+          "precision": 0.4882
+        },
+        {
+          "recall": 0.883,
+          "precision": 0.5123
+        },
+        {
+          "recall": 0.8511,
+          "precision": 0.5195
+        },
+        {
+          "recall": 0.7979,
+          "precision": 0.5137
+        },
+        {
+          "recall": 0.7979,
+          "precision": 0.5435
+        },
+        {
+          "recall": 0.7553,
+          "precision": 0.5462
+        },
+        {
+          "recall": 0.6915,
+          "precision": 0.5328
+        },
+        {
+          "recall": 0.6596,
+          "precision": 0.5439
+        },
+        {
+          "recall": 0.617,
+          "precision": 0.5472
+        },
+        {
+          "recall": 0.5745,
+          "precision": 0.551
+        },
+        {
+          "recall": 0.5213,
+          "precision": 0.5444
+        },
+        {
+          "recall": 0.4574,
+          "precision": 0.5244
+        },
+        {
+          "recall": 0.4255,
+          "precision": 0.5405
+        },
+        {
+          "recall": 0.383,
+          "precision": 0.5455
+        },
+        {
+          "recall": 0.3404,
+          "precision": 0.5517
+        },
+        {
+          "recall": 0.3085,
+          "precision": 0.58
+        },
+        {
+          "recall": 0.2979,
+          "precision": 0.6667
+        },
+        {
+          "recall": 0.2447,
+          "precision": 0.6765
+        },
+        {
+          "recall": 0.1915,
+          "precision": 0.6923
+        },
+        {
+          "recall": 0.1383,
+          "precision": 0.7222
+        },
+        {
+          "recall": 0.0851,
+          "precision": 0.8
+        },
+        {
+          "recall": 0.0213,
+          "precision": 1.0
+        }
+      ],
+      "calibration_curve": [
+        {
+          "pred": 0.1422,
+          "obs": 0.08
+        },
+        {
+          "pred": 0.2393,
+          "obs": 0.125
+        },
+        {
+          "pred": 0.3029,
+          "obs": 0.25
+        },
+        {
+          "pred": 0.3668,
+          "obs": 0.3333
+        },
+        {
+          "pred": 0.4283,
+          "obs": 0.4167
+        },
+        {
+          "pred": 0.4885,
+          "obs": 0.4583
+        },
+        {
+          "pred": 0.5556,
+          "obs": 0.625
+        },
+        {
+          "pred": 0.6303,
+          "obs": 0.4583
+        },
+        {
+          "pred": 0.7017,
+          "obs": 0.4583
+        },
+        {
+          "pred": 0.8063,
+          "obs": 0.68
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "Single-center cohort (N=303): Estimates carry wide confidence intervals and unknown external generalization across diverse demographic or clinical populations.",
+    "Vessel-level outputs represent statistical tabular risk estimates from multi-task models, not direct anatomical lesion imaging or intraluminal angiographic reconstruction.",
+    "Performance on sparser target branches (e.g., RCA, LCX) may exhibit greater variance and should be interpreted alongside reported 95% confidence intervals.",
+    "Holdout evaluation (N=61) represents a secondary, higher-variance point estimate; headline benchmark relies on pooled repeated out-of-fold cross-validation.",
+    "Operating decision thresholds were tuned to maximize F1 on out-of-fold data and are slightly optimistic relative to un-tuned testing."
+  ],
+  "model_comparison_table": [
+    {
+      "target": "cad",
+      "model": "logistic_regression",
+      "outer_roc_auc_mean": 0.9125,
+      "outer_roc_auc_std": 0.0407,
+      "outer_roc_auc_se": 0.0105
+    },
+    {
+      "target": "cad",
+      "model": "random_forest",
+      "outer_roc_auc_mean": 0.9276,
+      "outer_roc_auc_std": 0.0524,
+      "outer_roc_auc_se": 0.0135
+    },
+    {
+      "target": "cad",
+      "model": "xgboost",
+      "outer_roc_auc_mean": 0.9186,
+      "outer_roc_auc_std": 0.0397,
+      "outer_roc_auc_se": 0.0103
+    },
+    {
+      "target": "LAD",
+      "model": "logistic_regression",
+      "outer_roc_auc_mean": 0.8213,
+      "outer_roc_auc_std": 0.0531,
+      "outer_roc_auc_se": 0.0137
+    },
+    {
+      "target": "LAD",
+      "model": "random_forest",
+      "outer_roc_auc_mean": 0.8529,
+      "outer_roc_auc_std": 0.0411,
+      "outer_roc_auc_se": 0.0106
+    },
+    {
+      "target": "LAD",
+      "model": "xgboost",
+      "outer_roc_auc_mean": 0.8423,
+      "outer_roc_auc_std": 0.0404,
+      "outer_roc_auc_se": 0.0104
+    },
+    {
+      "target": "LCX",
+      "model": "logistic_regression",
+      "outer_roc_auc_mean": 0.7076,
+      "outer_roc_auc_std": 0.0622,
+      "outer_roc_auc_se": 0.0161
+    },
+    {
+      "target": "LCX",
+      "model": "random_forest",
+      "outer_roc_auc_mean": 0.7489,
+      "outer_roc_auc_std": 0.0561,
+      "outer_roc_auc_se": 0.0145
+    },
+    {
+      "target": "LCX",
+      "model": "xgboost",
+      "outer_roc_auc_mean": 0.7259,
+      "outer_roc_auc_std": 0.0676,
+      "outer_roc_auc_se": 0.0175
+    },
+    {
+      "target": "RCA",
+      "model": "logistic_regression",
+      "outer_roc_auc_mean": 0.7029,
+      "outer_roc_auc_std": 0.0669,
+      "outer_roc_auc_se": 0.0173
+    },
+    {
+      "target": "RCA",
+      "model": "random_forest",
+      "outer_roc_auc_mean": 0.7037,
+      "outer_roc_auc_std": 0.0535,
+      "outer_roc_auc_se": 0.0138
+    },
+    {
+      "target": "RCA",
+      "model": "xgboost",
+      "outer_roc_auc_mean": 0.6991,
+      "outer_roc_auc_std": 0.0642,
+      "outer_roc_auc_se": 0.0166
+    }
+  ]
+}
