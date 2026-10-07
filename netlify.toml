@@ -1,0 +1,29 @@
+[build]
+  command = "npm ci && npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# The frontend resolves its API base at build time. It already defaults to the
+# deployed Render API when not on localhost, so no env var is required;
+# uncomment to point at a different backend.
+# VITE_API_BASE_URL = "https://cardiomap-ai.onrender.com"
+
+# Client-side state drives navigation (no router), but keep deep links and
+# refreshed URLs resolving to the SPA shell.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# The heart mesh and report assets are content-hashed or immutable.
+[[headers]]
+  for = "/models/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

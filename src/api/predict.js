@@ -7,7 +7,17 @@
  */
 
 export const USE_MOCK = false;
-export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+
+// Local dev talks to the local backend; anywhere else (Netlify, staging, …)
+// falls through to the deployed Render API. Set VITE_API_BASE_URL at build
+// time to override either default.
+const DEFAULT_API_BASE = ['localhost', '127.0.0.1'].includes(
+  typeof window !== 'undefined' ? window.location.hostname : ''
+)
+  ? 'http://localhost:8000'
+  : 'https://cardiomap-ai.onrender.com';
+
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || DEFAULT_API_BASE;
 
 // Cold artifact load on the backend takes ~0.3s and each inference runs four
 // SHAP explainers (~70ms). The old 1200ms budget aborted the first request
