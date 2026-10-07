@@ -3,6 +3,20 @@ CardioMap API — FastAPI application entry point.
 Clinical Decision Support Backend for 3D Cardiovascular Risk Visualization.
 """
 
+# Must run before numpy/sklearn import: the free-tier container is a single
+# shared vCPU, so a 1-row predict that wakes a 10-thread BLAS pool just makes
+# the threads contend with each other. setdefault keeps any explicit Render
+# env var authoritative.
+import os
+
+for _thread_var in (
+    "OPENBLAS_NUM_THREADS",
+    "OMP_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+):
+    os.environ.setdefault(_thread_var, "1")
+
 from contextlib import asynccontextmanager
 from typing import Dict, Any, List
 import json
@@ -64,11 +78,18 @@ app.add_middleware(
 @app.get("/health", response_model=HealthResponse, tags=["System"])
 async def health():
     """Health check endpoint indicating model readiness and artifact status."""
+    from threadpoolctl import threadpool_info
+
     return HealthResponse(
         status="healthy" if predictor_service.artifacts_loaded else "uninitialized",
         model_version=predictor_service.model_version,
         artifacts_loaded=predictor_service.artifacts_loaded,
         targets=["cad", "LAD", "LCX", "RCA"],
+        threadpools={
+            str(pool.get("internal_api", pool.get("user_api", "unknown"))):
+                int(pool.get("num_threads", 0))
+            for pool in threadpool_info()
+        },
     )
 
 

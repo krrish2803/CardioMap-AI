@@ -77,3 +77,7 @@ class HealthResponse(BaseModel):
     model_version: str
     artifacts_loaded: bool
     targets: List[str]
+    threadpools: Dict[str, int] = Field(
+        default_factory=dict,
+        description="Loaded numeric thread pools and their configured width.",
+    )
