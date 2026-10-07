@@ -149,10 +149,11 @@ async def get_samples():
 async def predict(request: PredictRequest):
     """
     Main inference endpoint. Predicts CAD, LAD, LCX, and RCA stenosis risks
-    and computes SHAP attributions in pre-calibration space.
+    and computes SHAP attributions in pre-calibration space (skipped when
+    ``explain`` is false — the fast path used by the What-If sliders).
     """
     try:
-        result = predictor_service.predict(request.features)
+        result = predictor_service.predict(request.features, explain=request.explain)
         return result
     except ValueError as val_err:
         raise HTTPException(

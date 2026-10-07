@@ -6,10 +6,30 @@ import { DEFAULT_CAMERA, VESSEL_CONFIGS } from '../config/vessels';
 
 let debounceTimeout = null;
 
+// What-If slider drags fire a fast probabilities-only predict (explain: false).
+// Once the input settles, a follow-up request recomputes SHAP so the
+// explanation panels catch up to the final what-if state.
+let explainRefreshTimeout = null;
+const EXPLAIN_REFRESH_MS = 1200;
+
 // Monotonic request id: rapid slider drags can resolve out of order, so late
 // responses must not overwrite newer intent.
 let predictionRequestId = 0;
 let initPromise = null;
+
+function clearDebounce() {
+  if (debounceTimeout) {
+    clearTimeout(debounceTimeout);
+    debounceTimeout = null;
+  }
+}
+
+function clearExplainRefresh() {
+  if (explainRefreshTimeout) {
+    clearTimeout(explainRefreshTimeout);
+    explainRefreshTimeout = null;
+  }
+}
 
 const DEFAULT_SAMPLE_KEY = 'high';
 
@@ -112,11 +132,17 @@ export const useStore = create((set, get) => ({
     set({ features: updated, selectedSampleId: 'custom' });
 
     if (get().whatIfMode) {
-      if (debounceTimeout) clearTimeout(debounceTimeout);
+      clearDebounce();
       debounceTimeout = setTimeout(() => {
         debounceTimeout = null;
-        get().runPrediction(updated);
+        get().runPrediction(updated, { explain: false });
       }, 300);
+
+      clearExplainRefresh();
+      explainRefreshTimeout = setTimeout(() => {
+        explainRefreshTimeout = null;
+        get().runPrediction(get().features, { explain: true, silent: true });
+      }, EXPLAIN_REFRESH_MS);
     }
   },
 
@@ -134,10 +160,8 @@ export const useStore = create((set, get) => ({
       return;
     }
     // Cancel any pending debounced prediction so it cannot land after this.
-    if (debounceTimeout) {
-      clearTimeout(debounceTimeout);
-      debounceTimeout = null;
-    }
+    clearDebounce();
+    clearExplainRefresh();
     set({
       selectedSampleId: sampleId,
       features: { ...sample.features },
@@ -146,16 +170,29 @@ export const useStore = create((set, get) => ({
   },
 
   // Execute prediction. Stale responses are discarded so the newest slider
-  // state always wins regardless of response order.
-  runPrediction: async (customFeatures = null) => {
+  // state always wins regardless of response order. `explain: false` skips
+  // the SHAP pass server-side; the previous explanation is retained so the
+  // panels do not blank out mid-drag. `silent` avoids re-triggering the
+  // loading indicator for the background explanation refresh.
+  runPrediction: async (customFeatures = null, { explain = true, silent = false } = {}) => {
     const feat = customFeatures || get().features;
     const requestId = ++predictionRequestId;
-    set({ loading: true });
+    if (!silent) set({ loading: true });
     try {
-      const { data, isSimulation, error } = await getPredictions(feat);
+      const { data, isSimulation, error } = await getPredictions(feat, { explain });
       if (requestId !== predictionRequestId) return;
+      const prev = get().predictions;
+      const predictions = explain || !prev
+        ? data
+        : {
+            ...data,
+            shap: prev.shap,
+            base_value: prev.base_value,
+            explanation_space: prev.explanation_space,
+            measurements: prev.measurements,
+          };
       set({
-        predictions: data,
+        predictions,
         isSimulation,
         error: error || null,
         loading: false,
@@ -184,9 +221,9 @@ export const useStore = create((set, get) => ({
 
   setHoveredVessel: (vesselId) => set({ hoveredVessel: vesselId }),
   setWhatIfMode: (val) => {
-    if (!val && debounceTimeout) {
-      clearTimeout(debounceTimeout);
-      debounceTimeout = null;
+    if (!val) {
+      clearDebounce();
+      clearExplainRefresh();
     }
     set({ whatIfMode: val });
   },
@@ -195,10 +232,8 @@ export const useStore = create((set, get) => ({
   setPrefersReducedMotion: (val) => set({ prefersReducedMotion: val }),
 
   resetCamera: () => {
-    if (debounceTimeout) {
-      clearTimeout(debounceTimeout);
-      debounceTimeout = null;
-    }
+    clearDebounce();
+    clearExplainRefresh();
     // Clone so the object identity changes: CameraRig keys its lerp effect on
     // [cameraPreset], and assigning the same DEFAULT_CAMERA reference never
     // re-fired it.

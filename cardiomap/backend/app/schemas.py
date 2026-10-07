@@ -50,6 +50,14 @@ class PredictRequest(BaseModel):
             "Region RWMA": "2"
         }]
     )
+    explain: bool = Field(
+        default=True,
+        description=(
+            "Compute SHAP attributions for this request. Set false for the "
+            "fast path (probabilities only); shap, base_value, "
+            "explanation_space and measurements then come back empty."
+        ),
+    )
 
 
 class PredictResponse(BaseModel):

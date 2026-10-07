@@ -147,9 +147,14 @@ class PredictorService:
         except (ValueError, TypeError):
             return "unknown"
 
-    def predict(self, raw_features: Dict[str, Any]) -> PredictResponse:
+    def predict(self, raw_features: Dict[str, Any], explain: bool = True) -> PredictResponse:
         """
         Executes calibrated inference and SHAP attribution across all 4 targets.
+
+        With ``explain=False`` the SHAP pass is skipped entirely and the
+        explanation fields return empty. This is the fast path used by the
+        What-If sliders, which only need recalculated probabilities; a full
+        explanation is fetched separately once the input settles.
         """
         if not self.artifacts_loaded:
             self.load_artifacts()
@@ -184,51 +189,53 @@ class PredictorService:
                 threshold=round(thresh, 4),
             )
 
-            # 2. SHAP explanation
-            explainer = self.explainers[target]
-            exp_out = explainer.explain_instance(instance_df)
-            
-            shap_results[target] = [
-                ShapContribution(
-                    feature=c["feature"],
-                    value=c["value"],
-                    contribution=c["contribution"],
-                    relative_contribution=c["relative_contribution"],
-                )
-                for c in exp_out["contributions"]
-            ]
-            base_values[target] = exp_out["base_value"]
-            explanation_spaces[target] = exp_out["explanation_space"]
+            # 2. SHAP explanation (skipped on the fast path)
+            if explain:
+                explainer = self.explainers[target]
+                exp_out = explainer.explain_instance(instance_df)
 
-        # 3. Build measurements list with CAD contributions
-        cad_shap_lookup = {c.feature: c for c in shap_results["cad"]}
+                shap_results[target] = [
+                    ShapContribution(
+                        feature=c["feature"],
+                        value=c["value"],
+                        contribution=c["contribution"],
+                        relative_contribution=c["relative_contribution"],
+                    )
+                    for c in exp_out["contributions"]
+                ]
+                base_values[target] = exp_out["base_value"]
+                explanation_spaces[target] = exp_out["explanation_space"]
+
+        # 3. Build measurements list with CAD contributions (SHAP-derived)
         measurements = []
+        if explain:
+            cad_shap_lookup = {c.feature: c for c in shap_results["cad"]}
 
-        schema_features = self.feature_schema.get("features", {})
-        for feat_name, f_meta in schema_features.items():
-            val = instance_df[feat_name].iloc[0] if feat_name in instance_df.columns else None
-            if val is not None:
-                if pd.isna(val) or (isinstance(val, float) and np.isnan(val)):
-                    val = None
+            schema_features = self.feature_schema.get("features", {})
+            for feat_name, f_meta in schema_features.items():
+                val = instance_df[feat_name].iloc[0] if feat_name in instance_df.columns else None
+                if val is not None:
+                    if pd.isna(val) or (isinstance(val, float) and np.isnan(val)):
+                        val = None
 
-            flag = self.evaluate_abnormal_flag(feat_name, val)
-            cad_c = cad_shap_lookup.get(feat_name)
-            contrib = cad_c.contribution if cad_c else 0.0
-            rel_contrib = cad_c.relative_contribution if cad_c else 0.0
+                flag = self.evaluate_abnormal_flag(feat_name, val)
+                cad_c = cad_shap_lookup.get(feat_name)
+                contrib = cad_c.contribution if cad_c else 0.0
+                rel_contrib = cad_c.relative_contribution if cad_c else 0.0
 
-            measurements.append(MeasurementItem(
-                feature=feat_name,
-                group=f_meta.get("group", "Other"),
-                value=val,
-                unit=f_meta.get("unit"),
-                reference_range=f_meta.get("reference_range"),
-                flag=flag,
-                contribution=contrib,
-                relative_contribution=rel_contrib,
-            ))
+                measurements.append(MeasurementItem(
+                    feature=feat_name,
+                    group=f_meta.get("group", "Other"),
+                    value=val,
+                    unit=f_meta.get("unit"),
+                    reference_range=f_meta.get("reference_range"),
+                    flag=flag,
+                    contribution=contrib,
+                    relative_contribution=rel_contrib,
+                ))
 
-        # Sort measurements by CAD relative contribution descending
-        measurements.sort(key=lambda m: abs(m.contribution), reverse=True)
+            # Sort measurements by CAD relative contribution descending
+            measurements.sort(key=lambda m: abs(m.contribution), reverse=True)
 
         elapsed_ms = (time.time() - t_start) * 1000
         # print(f"Inference latency: {elapsed_ms:.1f}ms")

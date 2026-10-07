@@ -239,13 +239,25 @@ function buildSimulatedResponse(features) {
 /**
  * Predict risk from patient features.
  *
+ * Pass `{ explain: false }` to skip the SHAP attribution pass server-side —
+ * the response then carries probabilities only, and `data.shap` /
+ * `data.measurements` are empty. Use it for rapid interactions (What-If
+ * sliders) where only the risk numbers need to refresh.
+ *
  * Resolves to `{ data, isSimulation, error }`. The caller decides how to present
  * a simulation — it is never silently substituted for a real prediction.
  */
-export async function getPredictions(features) {
+export async function getPredictions(features, { explain = true } = {}) {
   if (USE_MOCK) {
     await new Promise((res) => setTimeout(res, 60));
-    return { data: buildSimulatedResponse(features), isSimulation: true, error: null };
+    const data = buildSimulatedResponse(features);
+    if (!explain) {
+      data.shap = {};
+      data.base_value = {};
+      data.explanation_space = {};
+      data.measurements = [];
+    }
+    return { data, isSimulation: true, error: null };
   }
 
   const controller = new AbortController();
@@ -255,7 +267,7 @@ export async function getPredictions(features) {
     const response = await fetch(`${API_BASE_URL}/predict`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ features }),
+      body: JSON.stringify({ features, explain }),
       signal: controller.signal,
     });
 

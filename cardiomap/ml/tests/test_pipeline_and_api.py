@@ -151,6 +151,52 @@ def test_api_predict_contract(client):
     assert "Decision support" in data["disclaimer"]
 
 
+# 4b. FAST PATH (NO SHAP) TEST
+def test_predict_explain_false_skips_shap(client):
+    """
+    Verifies explain: false returns identical probabilities with the SHAP
+    pass skipped — the fast path used by the What-If sliders.
+    """
+    features = {
+        "Age": 60,
+        "Sex": 1,
+        "Typical Chest Pain": 1,
+        "BP": 140,
+        "LDL": 150,
+        "EF-TTE": 45,
+        "Region RWMA": "2",
+    }
+
+    fast = client.post("/predict", json={"features": features, "explain": False})
+    assert fast.status_code == 200, f"Fast path failed: {fast.text}"
+    fast_data = fast.json()
+
+    assert 0.0 <= fast_data["cad"]["probability"] <= 1.0
+    for v in ["LAD", "LCX", "RCA"]:
+        assert 0.0 <= fast_data["vessels"][v]["probability"] <= 1.0
+
+    # Explanation payload is empty rather than fabricated
+    assert fast_data["shap"] == {}
+    assert fast_data["base_value"] == {}
+    assert fast_data["explanation_space"] == {}
+    assert fast_data["measurements"] == []
+
+    # Default (explain omitted) still returns full attributions
+    full = client.post("/predict", json={"features": features})
+    assert full.status_code == 200
+    full_data = full.json()
+    assert len(full_data["shap"]["cad"]) > 0
+    assert len(full_data["measurements"]) > 0
+
+    # The fast path must not change the model output
+    assert fast_data["cad"]["probability"] == full_data["cad"]["probability"]
+    for v in ["LAD", "LCX", "RCA"]:
+        assert (
+            fast_data["vessels"][v]["probability"]
+            == full_data["vessels"][v]["probability"]
+        )
+
+
 # 5. MISSING-INPUT / IMPUTATION TEST
 def test_missing_input_tolerance(client):
     """
