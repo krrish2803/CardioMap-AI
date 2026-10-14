@@ -4,6 +4,21 @@
 
 ---
 
+## 🔗 Live Demo
+
+| | |
+|---|---|
+| **Web app** | https://cardio-map-ai.netlify.app |
+| **Clinical workbench** (skips the landing page) | https://cardio-map-ai.netlify.app/#demo |
+| **Demo video** (3 min) | https://youtu.be/hSCFckUc3Fc |
+| **API docs** (Swagger) | https://cardiomap-ai.onrender.com/docs |
+| **Source** | https://github.com/krrish2803/CardioMap-AI |
+
+> The backend runs on Render's free tier and sleeps after ~15 minutes idle, so the
+> first request after a quiet period can take up to ~50 seconds to wake.
+
+---
+
 ## 🔬 Clinical Design Principles
 
 1. **Spatial Localization**: Disaggregates risk into Left Anterior Descending (LAD), Left Circumflex (LCX), and Right Coronary Artery (RCA) territories.
