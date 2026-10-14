@@ -81,50 +81,80 @@ To use a custom clinical or photorealistic GLTF/GLB heart mesh:
 CardioMap 3D is designed with an API toggle and schema-driven architecture.
 
 ### 1. Toggle Mock vs Live Mode
-Open `src/api/predict.js`:
+Open `src/api/predict.js`. Live mode is the default; the API base resolves by
+hostname (`localhost` / `127.0.0.1` → local backend, anything else → the
+deployed API), and `VITE_API_BASE_URL` overrides both:
 ```javascript
 // src/api/predict.js — live backend by default, mock available for demos:
-export const USE_MOCK = false; // true = run without a backend
-export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+export const USE_MOCK = false; // true = run fully offline with a simulated response
+export const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL ||
+  (['localhost', '127.0.0.1'].includes(window.location.hostname)
+    ? 'http://localhost:8000'
+    : 'https://cardiomap-ai.onrender.com');
 ```
+
+If the backend cannot be reached, the UI shows a clearly-labelled **SIMULATED**
+result rather than a silent fallback.
 
 ### 2. Expected Endpoints
 
 #### `POST /predict`
-- **Request Body**:
+
+All 55 clinical fields are optional. The pipeline imputes anything omitted and
+reports those names back in `imputed_features`, so a partial request still
+returns a valid prediction.
+
+- **Request Body** — `features` keys are the canonical names from `GET /schema`:
   ```json
   {
     "features": {
-      "age": 62,
-      "sex": 1,
-      "smoking": 2,
-      "systolic_bp": 145,
-      "ldl": 165,
-      "hs_troponin": 18.4,
-      "rwma": "anteroseptal"
-    }
+      "Age": 62,
+      "Sex": 1,
+      "Typical Chest Pain": 1,
+      "BP": 145,
+      "LDL": 165,
+      "EF-TTE": 45,
+      "Region RWMA": "2"
+    },
+    "explain": true
   }
   ```
-- **Response Format**:
+  Setting `"explain": false` selects the fast path: probabilities only, with
+  `shap`, `base_value`, `explanation_space` and `measurements` returned empty
+  (~250 ms faster — used while What-If sliders are being dragged).
+
+- **Response Format** (trimmed for readability — `shap` carries the same
+  structure for `cad`, `LAD`, `LCX` and `RCA`, with all 55 features ranked by
+  `|contribution|`):
   ```json
   {
-    "cad": { "probability": 0.82, "label": "CAD", "classification": "Severe" },
+    "cad": { "probability": 0.9841, "label": "CAD", "threshold": 0.41 },
     "vessels": {
-      "LAD": { "probability": 0.78, "classification": "Severe" },
-      "LCX": { "probability": 0.35, "classification": "Mild" },
-      "RCA": { "probability": 0.54, "classification": "Moderate" }
+      "LAD": { "probability": 0.9399, "label": "Stenosis", "threshold": 0.48 },
+      "LCX": { "probability": 0.5414, "label": "Stenosis", "threshold": 0.45 },
+      "RCA": { "probability": 0.4129, "label": "Normal", "threshold": 0.42 }
     },
     "shap": {
       "cad": [
-        { "feature": "LDL Cholesterol", "value": "165 mg/dL", "contribution": 0.16 },
-        { "feature": "Regional Wall Motion", "value": "Anteroseptal Hypokinesia", "contribution": 0.22 }
+        { "feature": "Region RWMA", "value": "2", "contribution": 0.0976, "relative_contribution": 25.9 },
+        { "feature": "Typical Chest Pain", "value": 1.0, "contribution": 0.0876, "relative_contribution": 23.25 }
       ],
-      "LAD": [...],
-      "LCX": [...],
-      "RCA": [...]
-    }
+      "LAD": [ "..." ], "LCX": [ "..." ], "RCA": [ "..." ]
+    },
+    "base_value": { "cad": 0.5, "LAD": 0.5, "LCX": 0.5, "RCA": -0.1755 },
+    "explanation_space": { "cad": "probability", "LAD": "probability", "LCX": "probability", "RCA": "log-odds" },
+    "measurements": [
+      { "feature": "Region RWMA", "group": "Echocardiography", "value": "2", "unit": null,
+        "reference_range": null, "flag": "unknown", "contribution": 0.0976, "relative_contribution": 25.9 }
+    ],
+    "imputed_features": [ "Weight", "Length", "BMI", "..." ],
+    "model_version": "cardiomap-v1.0.0-1791132875",
+    "disclaimer": "Decision support / educational use only. Not a substitute for formal diagnostic imaging or clinical judgement."
   }
   ```
+  `label` is the outcome at that target's F1-optimised `threshold`; compare
+  `probability` against `threshold` to read the classification.
 
 #### `GET /schema`
 Returns dynamic input definitions (`groups`, `fields`, `ranges`, `defaults`). The UI input form dynamically renders from this JSON, requiring zero front-end code changes when adding new lab tests or biomarkers.

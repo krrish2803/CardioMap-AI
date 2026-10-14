@@ -11,6 +11,7 @@ from fastapi.testclient import TestClient
 from cardiomap.backend.app.main import app
 from cardiomap.backend.app.settings import settings
 from cardiomap.backend.app.predictor import predictor_service
+from cardiomap.backend.app.schemas import PredictRequest, PredictResponse
 from cardiomap.ml.src.data import load_config, load_and_clean_data, get_feature_matrix_and_target
 from cardiomap.ml.src.preprocess import build_preprocessor
 
@@ -276,3 +277,69 @@ def test_api_health_and_metrics(client):
     res_s = client.get("/samples")
     assert res_s.status_code == 200
     assert len(res_s.json()) == 3
+
+
+# 9. README / API CONTRACT DRIFT GUARD
+def test_readme_api_examples_match_contract(client):
+    """
+    Guards README.md against drifting from the live API contract.
+
+    Unknown feature keys are silently ignored and imputed at runtime, so a stale
+    or misspelled key in the documented example yields a plausible-looking but
+    meaningless prediction instead of an error. This test makes that drift fail
+    loudly in CI rather than silently in the docs.
+    """
+    import json as _json
+    import re
+    import textwrap
+    from pathlib import Path
+
+    readme_path = Path(__file__).resolve().parents[3] / "README.md"
+    assert readme_path.exists(), f"README not found at {readme_path}"
+    text = readme_path.read_text(encoding="utf-8")
+
+    heading = "#### `POST /predict`"
+    assert heading in text, "README is missing the POST /predict section"
+    section = text.split(heading, 1)[1]
+
+    json_blocks = re.findall(r"```json\s*\n(.*?)```", section, re.DOTALL)
+    assert len(json_blocks) >= 2, "Expected a documented request and response example"
+
+    # --- documented request body must use real schema keys -------------------
+    request = _json.loads(json_blocks[0])
+    schema_keys = set(predictor_service.feature_schema.get("features", {}).keys())
+    assert schema_keys, "feature schema is empty"
+
+    assert set(request).issubset(PredictRequest.model_fields), (
+        f"README request has keys the API does not accept: "
+        f"{sorted(set(request) - set(PredictRequest.model_fields))}"
+    )
+    documented = set(request.get("features", {}))
+    assert documented, "README request example documents no features"
+
+    unknown = documented - schema_keys
+    assert not unknown, (
+        f"README documents feature keys absent from the schema: {sorted(unknown)}. "
+        "The API ignores unknown keys and imputes them, so this example would "
+        "return a meaningless all-imputed prediction."
+    )
+
+    # --- documented response keys must exist on the response contract --------
+    # The example is intentionally trimmed (e.g. "..." placeholders), so read the
+    # top-level keys structurally rather than parsing it as strict JSON.
+    resp_block = textwrap.dedent(json_blocks[1]).strip()
+    resp_keys = set(re.findall(r'^  "([A-Za-z_]+)"\s*:', resp_block, re.MULTILINE))
+    assert resp_keys, "Could not read top-level keys from the documented response example"
+    unknown_resp = resp_keys - set(PredictResponse.model_fields)
+    assert not unknown_resp, (
+        f"README response documents keys absent from the contract: {sorted(unknown_resp)}"
+    )
+
+    # --- the documented example must actually work end to end ----------------
+    res = client.post("/predict", json=request)
+    assert res.status_code == 200, res.text
+    payload = res.json()
+    assert set(payload) == set(PredictResponse.model_fields)
+    assert not (documented & set(payload["imputed_features"])), (
+        "README sent feature keys that the backend ignored and imputed anyway"
+    )
